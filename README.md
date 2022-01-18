@@ -16,3 +16,10 @@ v.1.1:
 - bullet shell casting sound;
 - sync pistol recoil with bullet and flash animation;
 - add furniture asset.
+
+v.1.2:
+- bullets impact effects;
+- bullets holes;
+- change crosshair design to circle;
+- bullets holes and impact depends on target material;
+- casting don't destroy.
