@@ -9,6 +9,12 @@ public class SimpleShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+    public GameObject impactStandartEffect;
+    public GameObject impactStoneEffect;
+    public GameObject impactWoodEffect;
+    public GameObject bulletHoleStoneEffect;
+    public GameObject bulletHoleWoodEffect;
+    public GameObject FPCharacter;
 
     [Header("Location Refrences")]
     [SerializeField] private Animator gunAnimator;
@@ -16,9 +22,10 @@ public class SimpleShoot : MonoBehaviour
     [SerializeField] private Transform casingExitLocation;
 
     [Header("Settings")]
-    [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
+    [Tooltip("Specify time to destory flash object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
+    public float range = 100f;  // bullet working distance
 
 
     void Start()
@@ -62,7 +69,44 @@ public class SimpleShoot : MonoBehaviour
         { return; }
 
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+        GameObject bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+
+        // Inspect target element and create effects
+        RaycastHit hit;
+        Camera FPSCamera = FPCharacter.GetComponent<Camera>();
+        if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit, range))
+        {
+            // Check the object for wood, stone, metal to choose effect style
+            GameObject impactEffect = impactStandartEffect;
+            GameObject bulletHoleEffect = bulletHoleStoneEffect;
+            if (hit.transform.GetComponent<Renderer>() != null)
+            {
+                if (hit.transform.GetComponent<Renderer>().material.name == "stone wall (Instance)")
+                {
+                    impactEffect = impactStoneEffect;
+                    bulletHoleEffect = bulletHoleStoneEffect;
+                }
+                if (hit.transform.GetComponent<Renderer>().material.name == "laminate (Instance)")
+                {
+                    impactEffect = impactWoodEffect;
+                    bulletHoleEffect = bulletHoleWoodEffect;
+                }
+                if (hit.transform.GetComponent<Renderer>().material.name == "wooden box (Instance)")
+                {
+                    impactEffect = impactWoodEffect;
+                    bulletHoleEffect = bulletHoleWoodEffect;
+                }
+            }
+
+            // Create an impact effect
+            GameObject impact = Instantiate(impactEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, 1f);
+
+            // Create bullet hole effect (rotate to player and move step from object)
+            GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(-hit.normal));
+            bulletHole.transform.SetParent(hit.transform);
+        }
 
     }
 
@@ -80,9 +124,6 @@ public class SimpleShoot : MonoBehaviour
         tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
-
-        //Destroy casing after X seconds
-        Destroy(tempCasing, destroyTimer);
     }
 
 }
