@@ -16,6 +16,9 @@ public class SimpleShoot : MonoBehaviour
     public GameObject bulletHoleWoodEffect;
     public GameObject FPCharacter;
 
+    public AudioClip shotAudio;
+    public AudioClip noBulletsAudio;
+
     [Header("Location Refrences")]
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform barrelLocation;
@@ -42,8 +45,14 @@ public class SimpleShoot : MonoBehaviour
         //If you want a different input, change it here
         if (Input.GetButtonDown("Fire1"))
         {
-            //Calls animation on the gun that has the relevant animation events that will fire
-            gunAnimator.SetTrigger("Fire");
+            if (WeaponController.pistolMagazineCurrent != 0)
+            {
+                //Calls animation on the gun that has the relevant animation events that will fire
+                gunAnimator.SetTrigger("Fire");
+            } else {
+                // No bullets animation
+                gunAnimator.SetTrigger("noBullets");
+            }
         }
     }
 
@@ -51,6 +60,9 @@ public class SimpleShoot : MonoBehaviour
     //This function creates the bullet behavior
     void Shoot()
     {   
+        // Minus bullet from counter
+        WeaponController.pistolMagazineCurrent -= 1;
+
         // Shot sound effect
         this.GetComponent<AudioSource>().Play();
 
@@ -107,7 +119,6 @@ public class SimpleShoot : MonoBehaviour
             GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(-hit.normal));
             bulletHole.transform.SetParent(hit.transform);
         }
-
     }
 
     // This function creates a casing at the ejection slot
@@ -124,6 +135,12 @@ public class SimpleShoot : MonoBehaviour
         tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
+    }
+
+    void NoBulletsSounds()
+    {
+        // Shot sound effect
+        this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
     }
 
 }
