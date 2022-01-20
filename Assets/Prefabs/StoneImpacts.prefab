@@ -9797,7 +9797,6 @@ GameObject:
   - component: {fileID: 4116101621057930}
   - component: {fileID: 33350502945847484}
   - component: {fileID: 23196471665287424}
-  - component: {fileID: 135263177144982302}
   m_Layer: 2
   m_Name: StoneImpacts
   m_TagString: Untagged
@@ -9871,19 +9870,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &135263177144982302
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341869769842038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1918026999510584
 GameObject:
   m_ObjectHideFlags: 0

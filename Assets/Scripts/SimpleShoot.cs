@@ -9,11 +9,18 @@ public class SimpleShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+
     public GameObject impactStandartEffect;
+
     public GameObject impactStoneEffect;
-    public GameObject impactWoodEffect;
     public GameObject bulletHoleStoneEffect;
+
+    public GameObject impactWoodEffect;
     public GameObject bulletHoleWoodEffect;
+
+    public GameObject impactMetalEffect;
+    public GameObject bulletHoleMetalEffect;
+
     public GameObject FPCharacter;
 
     public AudioClip shotAudio;
@@ -26,7 +33,7 @@ public class SimpleShoot : MonoBehaviour
 
     [Header("Settings")]
     [Tooltip("Specify time to destory flash object")] [SerializeField] private float destroyTimer = 2f;
-    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
+    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 30f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
     public float range = 100f;  // bullet working distance
 
@@ -76,14 +83,6 @@ public class SimpleShoot : MonoBehaviour
             Destroy(tempFlash, destroyTimer);
         }
 
-        //cancels if there's no bullet prefeb
-        if (!bulletPrefab)
-        { return; }
-
-        // Create a bullet and add force on it in direction of the barrel
-        GameObject bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-
         // Inspect target element and create effects
         RaycastHit hit;
         Camera FPSCamera = FPCharacter.GetComponent<Camera>();
@@ -109,6 +108,11 @@ public class SimpleShoot : MonoBehaviour
                     impactEffect = impactWoodEffect;
                     bulletHoleEffect = bulletHoleWoodEffect;
                 }
+                if (hit.transform.GetComponent<Renderer>().material.name == "MetalSurface (Instance)")
+                {
+                    impactEffect = impactMetalEffect;
+                    bulletHoleEffect = bulletHoleMetalEffect;
+                }
             }
 
             // Create an impact effect
@@ -116,8 +120,14 @@ public class SimpleShoot : MonoBehaviour
             Destroy(impact, 1f);
 
             // Create bullet hole effect (rotate to player and move step from object)
-            GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(-hit.normal));
+            GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.0001f, Quaternion.LookRotation(-hit.normal));
             bulletHole.transform.SetParent(hit.transform);
+
+            // Add physics force to target
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * shotPower);
+            }
         }
     }
 
