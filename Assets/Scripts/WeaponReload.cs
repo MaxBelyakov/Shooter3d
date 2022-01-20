@@ -20,7 +20,7 @@ public class WeaponReload : MonoBehaviour
         // Waiting for reload button
         if (Input.GetButtonDown("Reload"))
         {
-            if (WeaponController.pistolMagazineCurrent < WeaponController.pistolMagazineAll)
+            if (WeaponController.pistolMagazineCurrent < WeaponController.pistolMagazineAll && Inventory.pistolMagazineInventoryCurrent > 0)
             {
                 // Reload audio effeect
                 this.GetComponent<AudioSource>().PlayOneShot(reloadAudio);
@@ -53,5 +53,8 @@ public class WeaponReload : MonoBehaviour
 
         // Add bullets to counter
         WeaponController.pistolMagazineCurrent = WeaponController.pistolMagazineAll;
+
+        // Minus ammo in inventory
+        Inventory.pistolMagazineInventoryCurrent --;
     }
 }
