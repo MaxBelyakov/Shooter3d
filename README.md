@@ -32,3 +32,9 @@ v.1.3 - 1.3.1:
 - temporary change bullets to add force to hit rigidbody objects;
 - fix: bullet holes have gap from sphere surface;
 - fix: ignore player body when shooting near player.
+
+v.1.4:
+- inventory (pistol ammo);
+- pistol magazine object;
+- put new pistol ammo in inventory;
+- pistol ammo inventory limits.
