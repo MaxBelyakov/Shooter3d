@@ -23,3 +23,12 @@ v.1.2:
 - change crosshair design to circle;
 - bullets holes and impact depends on target material;
 - casting don't destroy.
+
+v.1.3 - 1.3.1:
+- pistol reload script, animation and sound;
+- bullets counter;
+- nop bullets animation and sound;
+- metal bullet holes and impact;
+- temporary change bullets to add force to hit rigidbody objects;
+- fix: bullet holes have gap from sphere surface;
+- fix: ignore player body when shooting near player.
