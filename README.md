@@ -38,3 +38,12 @@ v.1.4:
 - pistol magazine object;
 - put new pistol ammo in inventory;
 - pistol ammo inventory limits.
+
+v.1.5 - 1.5.1:
+- add machine gun;
+- machine gun casing;
+- fall down pistol magazine sound;
+- take ammo sound;
+- increase crosshair size;
+- fix: pistol casing fall sound (doublicates);
+- fix: shooting while reloading.
