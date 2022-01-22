@@ -817,6 +817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M1911 Magazine_Silver_Full (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8108783290139396301, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -873,7 +877,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
 --- !u!1 &375349301 stripped
 GameObject:
@@ -1118,6 +1123,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 981636062}
     m_Modifications:
+    - target: {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 498775764728368606, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_Name
       value: M1911 Magazine_Silver_Full (1)
@@ -1178,7 +1191,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
 --- !u!1 &509988162
 GameObject:
@@ -1619,10 +1633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e119ae09a3fa8ae4392d780bf2c741c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submitDistance: 2
   pistolMagazineInventoryAll: 3
   pistolMagazineInventoryText: {fileID: 388086427}
   popup: {fileID: 1665298551}
+  a_pistolMagazineTake: {fileID: 8300000, guid: 9ad42f64b94792642b3c44b7af3a0663, type: 3}
 --- !u!4 &971060478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000014003336686, guid: ff9b1176aafb57843ac4773e5a331cde, type: 3}
@@ -1675,6 +1689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M1911 Magazine_Silver_Full
       objectReference: {fileID: 0}
+    - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8108783290139396301, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1719,7 +1737,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
 --- !u!1 &1178088008 stripped
 GameObject:
@@ -1743,7 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788e920a079414e44992c21bf87b97fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
+  submitDistance: 2
 --- !u!1001 &1187568579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2099,6 +2118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M1911 Magazine_Silver_Full (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8108783290139396301, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2155,7 +2178,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
 --- !u!1001 &1531927017
 PrefabInstance:
@@ -2167,6 +2191,10 @@ PrefabInstance:
     - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_Name
       value: M1911 Magazine_Silver_Full (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108783290139396301, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
       propertyPath: m_RootOrder
@@ -2224,7 +2252,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1756508739987368435, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
 --- !u!4 &1638350982 stripped
 Transform:
@@ -2863,7 +2892,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3, y: 3}
+  m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057794001
 MonoBehaviour:
@@ -2940,6 +2969,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2115570448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8107577268597085419, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
+  m_PrefabInstance: {fileID: 414202806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2115570453
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115570448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02445041, y: 0.0963156, z: 0.0419555}
+  m_Center: {x: -0.0012808503, y: 0.048003625, z: 0.005399609}
 --- !u!1 &2120341130
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,13 +3,13 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    //public float submitDistance = 2f;                       // Distance to interact with object
+    public int pistolMagazineInventoryAll = 3;                  // Max value of pistol magazines in inventory
+    public static int s_pistolMagazineInventoryCurrent = 0;     // Current value of pistol magazines in inventory
+    public TMP_Text pistolMagazineInventoryText;                // Text ammo status in inventory
 
-    public int pistolMagazineInventoryAll = 3;              // Max value of pistol magazines in inventory
-    public static int pistolMagazineInventoryCurrent = 0;   // Current value of pistol magazines in inventory
-    public TMP_Text pistolMagazineInventoryText;            // Text ammo status in inventory
+    public TMP_Text popup;                                      // Pop up text to interact with object
 
-    public TMP_Text popup;                                  // Pop up text to interact with object
+    public AudioClip a_pistolMagazineTake;                      // Take magazine sound effect
 
     void Update()
     {
@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
         popup.text = "";
 
         // Update ammo status text
-        pistolMagazineInventoryText.text = pistolMagazineInventoryCurrent + " / " + pistolMagazineInventoryAll;
+        pistolMagazineInventoryText.text = s_pistolMagazineInventoryCurrent + " / " + pistolMagazineInventoryAll;
 
         // Check for target
         if (InspectTarget.targetInfo != null)
@@ -32,9 +32,12 @@ public class Inventory : MonoBehaviour
                 // Put pistol ammo in inventory
                 if (InspectTarget.targetInfo.TargetItem == "pistol magazine ammo")
                 {
-                    if (pistolMagazineInventoryCurrent < pistolMagazineInventoryAll) {
-                        pistolMagazineInventoryCurrent ++;
+                    if (s_pistolMagazineInventoryCurrent < pistolMagazineInventoryAll) {
+                        s_pistolMagazineInventoryCurrent ++;
                         Destroy(InspectTarget.targetInfo.TargetObject, 0f);
+
+                        // Play sound effect
+                        this.GetComponent<AudioSource>().PlayOneShot(a_pistolMagazineTake);
                     }
                 }
             }

@@ -9,6 +9,8 @@ public class WeaponReload : MonoBehaviour
 
     public AudioClip reloadAudio;
 
+    public static bool s_reloading = false;
+
     void Start()
     {
         // Find magazine in magazin location
@@ -20,8 +22,10 @@ public class WeaponReload : MonoBehaviour
         // Waiting for reload button
         if (Input.GetButtonDown("Reload"))
         {
-            if (WeaponController.pistolMagazineCurrent < WeaponController.pistolMagazineAll && Inventory.pistolMagazineInventoryCurrent > 0)
+            if (WeaponController.pistolMagazineCurrent < WeaponController.pistolMagazineAll && Inventory.s_pistolMagazineInventoryCurrent > 0)
             {
+                s_reloading = true;
+
                 // Reload audio effeect
                 this.GetComponent<AudioSource>().PlayOneShot(reloadAudio);
 
@@ -55,6 +59,8 @@ public class WeaponReload : MonoBehaviour
         WeaponController.pistolMagazineCurrent = WeaponController.pistolMagazineAll;
 
         // Minus ammo in inventory
-        Inventory.pistolMagazineInventoryCurrent --;
+        Inventory.s_pistolMagazineInventoryCurrent --;
+
+        s_reloading = false;
     }
 }

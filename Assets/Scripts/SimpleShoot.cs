@@ -50,7 +50,7 @@ public class SimpleShoot : MonoBehaviour
     void Update()
     {
         //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !WeaponReload.s_reloading)
         {
             if (WeaponController.pistolMagazineCurrent != 0)
             {
