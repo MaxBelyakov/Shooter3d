@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
-public class SimpleShoot : MonoBehaviour
+public class MachineGunShoot : MonoBehaviour
 {
-    [Header("Prefab Refrences")]
-    public GameObject casingPrefab;
-    public GameObject muzzleFlashPrefab;
+    public GameObject machineGun_casingPrefab;
+    /*public GameObject muzzleFlashPrefab;
 
     public GameObject impactStandartEffect;
 
@@ -25,46 +23,52 @@ public class SimpleShoot : MonoBehaviour
     public AudioClip shotAudio;
     public AudioClip noBulletsAudio;
 
-    [Header("Location Refrences")]
-    [SerializeField] private Animator gunAnimator;
-    [SerializeField] private Transform barrelLocation;
-    [SerializeField] private Transform casingExitLocation;
+    */
+    private Animator machineGun_Animator;
 
+    public GameObject machineGun_ParticleSystem;
+
+    /*[SerializeField] private Transform barrelLocation;*/
+    public GameObject machineGun_casingExitLocation;
+/*
     [Header("Settings")]
     [Tooltip("Specify time to destory flash object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 30f;
-    [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
-    public float range = 100f;  // bullet working distance
-
+    */
+    private float ejectPower = 250f;
+    /*
+    public float range = 100f;  // bullet working distance*/
 
     void Start()
     {
-        if (barrelLocation == null)
-            barrelLocation = transform;
-
-        if (gunAnimator == null)
-            gunAnimator = GetComponentInChildren<Animator>();
+        if (machineGun_Animator == null)
+            machineGun_Animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1") && !WeaponReload.s_reloading)
+        if (Input.GetButton("Fire1")) //&& !WeaponReload.s_reloading)
         {
-            if (WeaponController.pistolMagazineCurrent != 0)
-            {
+            /*if (WeaponController.pistolMagazineCurrent != 0)
+            {*/
                 //Calls animation on the gun that has the relevant animation events that will fire
-                gunAnimator.SetTrigger("Fire");
-            } else {
+                machineGun_Animator.SetTrigger("Shoot");
+                if (!machineGun_ParticleSystem.GetComponent<ParticleSystem>().isEmitting)
+                    machineGun_ParticleSystem.GetComponent<ParticleSystem>().Play();
+            /*} else {
                 // No bullets animation
                 gunAnimator.SetTrigger("noBullets");
-            }
+            }*/
+        } else {
+            if (machineGun_ParticleSystem.GetComponent<ParticleSystem>().isEmitting)
+                machineGun_ParticleSystem.GetComponent<ParticleSystem>().Stop();
         }
     }
 
 
     //This function creates the bullet behavior
-    void Shoot()
+    /*void Shoot()
     {   
         // Minus bullet from counter
         WeaponController.pistolMagazineCurrent -= 1;
@@ -129,27 +133,24 @@ public class SimpleShoot : MonoBehaviour
             }
         }
     }
-
+*/
     // This function creates a casing at the ejection slot
-    void CasingRelease()
+    void MachineGunCasingRelease()
     {
-        //Cancels function if ejection slot hasn't been set or there's no casing
-        if (!casingExitLocation || !casingPrefab)
-        { return; }
-
         //Create the casing
-        GameObject tempCasing;
-        tempCasing = Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation) as GameObject;
+        Transform casingTransform = machineGun_casingExitLocation.transform;
+        GameObject tempCasing = Instantiate(machineGun_casingPrefab, casingTransform.position, casingTransform.rotation);
+        
         //Add force on casing to push it out
-        tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
+        tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingTransform.position - casingTransform.right * 0.3f - casingTransform.up * 0.6f), 1f, 3f);
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
     }
-
+/*
     void NoBulletsSounds()
     {
         // Shot sound effect
         this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
-    }
+    }*/
 
 }
