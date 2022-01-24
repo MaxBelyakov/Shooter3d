@@ -47,3 +47,8 @@ v.1.5 - 1.5.1:
 - increase crosshair size;
 - fix: pistol casing fall sound (doublicates);
 - fix: shooting while reloading.
+
+v.1.6:
+- machine gun bullets impact and holes;
+- fix: audio voices limit increase to 100;
+- fix: fire flash effect makes more realistic.
