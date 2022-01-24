@@ -1317,11 +1317,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
   m_PrefabInstance: {fileID: 2140033561}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &608118294 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100006, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
-  m_PrefabInstance: {fileID: 1619968084}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &649301593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8108783290139396301, guid: 383b1a391f98da5478a7dddc283414a8, type: 3}
@@ -1612,6 +1607,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &934969638 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+  m_PrefabInstance: {fileID: 1619968084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947960467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
@@ -1907,8 +1907,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 100}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -143.748, y: 100}
+  m_SizeDelta: {x: 262.316, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219867228
 MonoBehaviour:
@@ -2030,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   machineGun_casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
   impactStandartEffect: {fileID: 335601133518758834, guid: 3be9f1cb3ffd2954a8531621ecb95ab8, type: 3}
   impactStoneEffect: {fileID: 1341869769842038, guid: 8b7a1ffda5bb7474b8fae646c45ce7b4, type: 3}
   bulletHoleStoneEffect: {fileID: 8837256863699861268, guid: c21aa115606154149877d5abc459d8a8, type: 3}
@@ -2040,7 +2041,7 @@ MonoBehaviour:
   FPCharacter: {fileID: 1178088008}
   shotAudio: {fileID: 8300000, guid: f941d931cc76999478b4975b69038167, type: 3}
   noBulletsAudio: {fileID: 8300000, guid: 130496eebb7bef745ad3cb9a2ffa05d6, type: 3}
-  machineGun_ParticleSystem: {fileID: 608118294}
+  barrelLocation: {fileID: 934969638}
   machineGun_casingExitLocation: {fileID: 1801622948}
   range: 100
 --- !u!82 &1329487591
@@ -2405,7 +2406,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100008, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_Name
-      value: MachineGun_04
+      value: MachineGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2557,8 +2562,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 31.013336
+      value: 50.948895
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 74ced98fce89d964faa34aea8fe92762, type: 2}
     - target: {fileID: 11100000, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_PlayAutomatically
       value: 1
@@ -2942,6 +2955,54 @@ PrefabInstance:
     - target: {fileID: 19800004, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].outWeight
       value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5274
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02330001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.01440013
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7137419
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0018467591
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7002733
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.013656215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.247
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -88.898
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366746813326526037, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.969
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747210177013023893, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+      propertyPath: m_Name
+      value: Barrell_Location
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
