@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MachineGunShoot : MonoBehaviour
 {
     public GameObject machineGun_casingPrefab;
-    /*public GameObject muzzleFlashPrefab;
+    public GameObject muzzleFlashPrefab;
 
     public GameObject impactStandartEffect;
 
@@ -23,21 +21,17 @@ public class MachineGunShoot : MonoBehaviour
     public AudioClip shotAudio;
     public AudioClip noBulletsAudio;
 
-    */
     private Animator machineGun_Animator;
 
-    public GameObject machineGun_ParticleSystem;
-
-    /*[SerializeField] private Transform barrelLocation;*/
+    public Transform barrelLocation;
     public GameObject machineGun_casingExitLocation;
-/*
-    [Header("Settings")]
-    [Tooltip("Specify time to destory flash object")] [SerializeField] private float destroyTimer = 2f;
-    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 30f;
-    */
+
+    private float destroyTimer = 2f;
+    private float shotPower = 30f;
+    
     private float ejectPower = 250f;
-    /*
-    public float range = 100f;  // bullet working distance*/
+
+    public float range = 100f;  // bullet working distance
 
     void Start()
     {
@@ -47,44 +41,29 @@ public class MachineGunShoot : MonoBehaviour
 
     void Update()
     {
-        //If you want a different input, change it here
-        if (Input.GetButton("Fire1")) //&& !WeaponReload.s_reloading)
+        if (Input.GetButton("Fire1"))//&& !WeaponReload.s_reloading)
         {
-            /*if (WeaponController.pistolMagazineCurrent != 0)
-            {*/
-                //Calls animation on the gun that has the relevant animation events that will fire
+            if (WeaponController.machineGun_MagazineCurrent > 0)
                 machineGun_Animator.SetTrigger("Shoot");
-                if (!machineGun_ParticleSystem.GetComponent<ParticleSystem>().isEmitting)
-                    machineGun_ParticleSystem.GetComponent<ParticleSystem>().Play();
-            /*} else {
-                // No bullets animation
-                gunAnimator.SetTrigger("noBullets");
-            }*/
-        } else {
-            if (machineGun_ParticleSystem.GetComponent<ParticleSystem>().isEmitting)
-                machineGun_ParticleSystem.GetComponent<ParticleSystem>().Stop();
+            else
+                machineGun_Animator.SetTrigger("NoBullets");
         }
     }
 
-
     //This function creates the bullet behavior
-    /*void Shoot()
-    {   
+    void Shoot()
+    {
         // Minus bullet from counter
-        WeaponController.pistolMagazineCurrent -= 1;
+        WeaponController.machineGun_MagazineCurrent -= 1;
 
         // Shot sound effect
-        this.GetComponent<AudioSource>().Play();
+        this.GetComponent<AudioSource>().PlayOneShot(shotAudio);
 
-        if (muzzleFlashPrefab)
-        {
-            // Create the muzzle flash
-            GameObject tempFlash;
-            tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
-
-            // Destroy the muzzle flash effect
-            Destroy(tempFlash, destroyTimer);
-        }
+        // Create the muzzle flash
+        GameObject tempFlash;
+        tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+        // Destroy the muzzle flash effect
+        Destroy(tempFlash, destroyTimer);
 
         // Inspect target element and create effects
         RaycastHit hit;
@@ -133,7 +112,7 @@ public class MachineGunShoot : MonoBehaviour
             }
         }
     }
-*/
+
     // This function creates a casing at the ejection slot
     void MachineGunCasingRelease()
     {
@@ -146,11 +125,9 @@ public class MachineGunShoot : MonoBehaviour
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
     }
-/*
-    void NoBulletsSounds()
-    {
-        // Shot sound effect
-        this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
-    }*/
 
+    void MachineGunNoBullets()
+    {
+        this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
+    }
 }
