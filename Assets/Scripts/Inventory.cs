@@ -3,17 +3,17 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    public int pistolMagazineInventoryAll = 3;                  // Max value of pistol magazines in inventory
-    public static int s_pistolMagazineInventoryCurrent = 0;     // Current value of pistol magazines in inventory
-    public TMP_Text pistolMagazineInventoryText;                // Text ammo status in inventory
+    public int pistolMagazineInventoryAll = 3;                           // Max value of pistol magazines in inventory
+    public static int s_pistol_MagazineInventoryCurrent = 0;             // Current value of pistol magazines in inventory
+    public TMP_Text pistol_MagazineInventoryText;                        // Text ammo status in inventory
 
-    public int machineGun_MagazineInventoryAll = 3;                  // Max value of pistol magazines in inventory
-    public static int s_machineGun_MagazineInventoryCurrent = 0;     // Current value of pistol magazines in inventory
-    public TMP_Text machineGun_MagazineInventoryText;                // Text ammo status in inventory
+    public int machineGun_MagazineInventoryAll = 3;                     // Max value of machine gun magazines in inventory
+    public static int s_machineGun_MagazineInventoryCurrent = 0;        // Current value of machine gun magazines in inventory
+    public TMP_Text machineGun_MagazineInventoryText;                   // Text ammo status in inventory
 
-    public TMP_Text popup;                                      // Pop up text to interact with object
+    public TMP_Text popup;                                              // Pop up text to interact with object
 
-    public AudioClip a_magazineTake;                            // Take magazine sound effect
+    public AudioClip a_magazineTake;                                    // Take magazine sound effect
 
     void Update()
     {
@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
         popup.text = "";
 
         // Update ammo status text
-        pistolMagazineInventoryText.text = s_pistolMagazineInventoryCurrent + " / " + pistolMagazineInventoryAll;
+        pistol_MagazineInventoryText.text = s_pistol_MagazineInventoryCurrent + " / " + pistolMagazineInventoryAll;
         machineGun_MagazineInventoryText.text = s_machineGun_MagazineInventoryCurrent + " / " + machineGun_MagazineInventoryAll;
 
         // Check for target
@@ -31,14 +31,14 @@ public class Inventory : MonoBehaviour
             if (InspectTarget.targetInfo.TargetItem == "pistol magazine ammo" || InspectTarget.targetInfo.TargetItem == "machine gun ammo")
                 popup.text = "To take press 'E'";
 
-            // Take ammo
-            if (Input.GetButtonDown("Submit") && !WeaponController.s_shooting && !WeaponReload.s_reloading)
+            // Take ammo after check for shooting or reloading
+            if (Input.GetButtonDown("Submit") && !WeaponController.s_shooting && !WeaponController.s_reloading)
             {
                 // Put pistol ammo in inventory
                 if (InspectTarget.targetInfo.TargetItem == "pistol magazine ammo")
                 {
-                    if (s_pistolMagazineInventoryCurrent < pistolMagazineInventoryAll) {
-                        s_pistolMagazineInventoryCurrent ++;
+                    if (s_pistol_MagazineInventoryCurrent < pistolMagazineInventoryAll) {
+                        s_pistol_MagazineInventoryCurrent ++;
                         Destroy(InspectTarget.targetInfo.TargetObject, 0f);
 
                         // Play sound effect

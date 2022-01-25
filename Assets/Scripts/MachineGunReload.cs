@@ -2,27 +2,24 @@ using UnityEngine;
 
 public class MachineGunReload : MonoBehaviour
 {
-    public GameObject magazine;            // Child of pistol magazine location 
+    public GameObject magazine;             // Machine gun magazine location 
+    public GameObject magazinePrefab;       // New magazine Prefab
 
-    public GameObject magazinePrefab;       // Magazine Prefab
-
-    public AudioClip reloadAudio;
-
-    public static bool s_reloading = false;
+    public AudioClip reloadAudio;           // Reload sound
 
     void Update()
     {   
         // Waiting for reload button
         if (Input.GetButtonDown("Reload") && !WeaponController.s_shooting)
         {
-            if (WeaponController.machineGun_MagazineCurrent < WeaponController.machineGun_MagazineAll && Inventory.s_machineGun_MagazineInventoryCurrent > 0)
+            if (MachineGun.bulletsCurrent < MachineGun.bulletsAll && Inventory.s_machineGun_MagazineInventoryCurrent > 0)
             {
-                s_reloading = true;
+                WeaponController.s_reloading = true;
 
                 // Reload audio effeect
                 this.GetComponent<AudioSource>().PlayOneShot(reloadAudio);
 
-                gameObject.GetComponent<Animator>().SetTrigger("reload");
+                this.GetComponent<Animator>().SetTrigger("reload");
             }
         }
     }
@@ -37,11 +34,11 @@ public class MachineGunReload : MonoBehaviour
     void AddMagazine()
     {
         // Add bullets to counter
-        WeaponController.machineGun_MagazineCurrent = WeaponController.machineGun_MagazineAll;
+        MachineGun.bulletsCurrent = MachineGun.bulletsAll;
 
         // Minus ammo in inventory
         Inventory.s_machineGun_MagazineInventoryCurrent --;
 
-        s_reloading = false;
+        WeaponController.s_reloading = false;
     }
 }

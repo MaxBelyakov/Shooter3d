@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2867417286392604782, guid: 37e98970f8baf7647b735d9036006f0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2872250911046700568, guid: 37e98970f8baf7647b735d9036006f0d, type: 3}
       propertyPath: m_RootOrder
@@ -1963,6 +1963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc532c48e23a8f648932b8a76bf9953a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pistol: {fileID: 324088473}
+  machineGun: {fileID: 1329487583}
   bulletsText: {fileID: 1219867228}
 --- !u!114 &947960479
 MonoBehaviour:
@@ -1977,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pistolMagazineInventoryAll: 3
-  pistolMagazineInventoryText: {fileID: 388086427}
+  pistol_MagazineInventoryText: {fileID: 388086427}
   machineGun_MagazineInventoryAll: 3
   machineGun_MagazineInventoryText: {fileID: 841527360}
   popup: {fileID: 1665298551}
@@ -2364,7 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809289ef2cc2896448aede5f68bc98c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machineGun_casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
+  casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
   impactStandartEffect: {fileID: 335601133518758834, guid: 3be9f1cb3ffd2954a8531621ecb95ab8, type: 3}
   impactStoneEffect: {fileID: 1341869769842038, guid: 8b7a1ffda5bb7474b8fae646c45ce7b4, type: 3}
@@ -2377,8 +2379,7 @@ MonoBehaviour:
   shotAudio: {fileID: 8300000, guid: f941d931cc76999478b4975b69038167, type: 3}
   noBulletsAudio: {fileID: 8300000, guid: 130496eebb7bef745ad3cb9a2ffa05d6, type: 3}
   barrelLocation: {fileID: 934969638}
-  machineGun_casingExitLocation: {fileID: 1694179037}
-  range: 100
+  casingExitLocation: {fileID: 1520894494}
 --- !u!82 &1329487591
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2488,7 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magazine: {fileID: 1355905171}
-  magazinePrefab: {fileID: 2655218392981163935, guid: dbc7188403089904397995772df4745b, type: 3}
+  magazinePrefab: {fileID: 2655218392981163935, guid: 9420ccba8d0830b47827e2b92402d47f, type: 3}
   reloadAudio: {fileID: 8300000, guid: 0492c5d59c59e60499c9ed2cbae37dd8, type: 3}
 --- !u!4 &1351323763 stripped
 Transform:
@@ -2752,6 +2753,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510187937}
   m_CullTransparentMesh: 1
+--- !u!4 &1520894494 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2920120397159384399, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
+  m_PrefabInstance: {fileID: 1619968084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1531927017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2839,7 +2845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3717,11 +3723,6 @@ Transform:
   m_Father: {fileID: 1189615997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1694179037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100020, guid: 97af63b8a23fbee47bcba7236e6958f4, type: 3}
-  m_PrefabInstance: {fileID: 1619968084}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1810479209
 PrefabInstance:
   m_ObjectHideFlags: 0

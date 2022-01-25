@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-public class MachineGunShoot : ShootEffects
+public class PistolShoot : ShootEffects
 {
     private Animator gunAnimator;
-
     public Transform barrelLocation;
     public Transform casingExitLocation;
 
@@ -14,22 +13,26 @@ public class MachineGunShoot : ShootEffects
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && !WeaponController.s_reloading)
+        //If you want a different input, change it here
+        if (Input.GetButtonDown("Fire1") && !WeaponController.s_reloading)
         {
             WeaponController.s_shooting = true;
-
-            if (MachineGun.bulletsCurrent > 0)
-                gunAnimator.SetTrigger("Shoot");
-            else
-                gunAnimator.SetTrigger("NoBullets");
+            if (Pistol.bulletsCurrent != 0)
+            {
+                //Calls animation on the gun that has the relevant animation events that will fire
+                gunAnimator.SetTrigger("Fire");
+            } else {
+                // No bullets animation
+                gunAnimator.SetTrigger("noBullets");
+            }
         }
     }
 
-    // Shoot behavior. Call by Animation
+    //This function creates the bullet behavior. Call by Animation
     void Shoot()
-    {
+    {   
         // Minus bullet from counter
-        MachineGun.bulletsCurrent -= 1;
+        Pistol.bulletsCurrent -= 1;
 
         ShowShootingEffects(barrelLocation);
     }
@@ -37,16 +40,17 @@ public class MachineGunShoot : ShootEffects
     // This function creates a casing at the ejection slot. Call by Animation
     void CasingRelease()
     {
-        ShowCasingEffects(casingExitLocation, MachineGun.ejectPower);
-        
+        ShowCasingEffects(casingExitLocation, Pistol.ejectPower);
+
         // Finish shooting
         WeaponController.s_shooting = false;
     }
 
-    void MachineGunNoBullets()
+    void NoBulletsSounds()
     {
+        // Shot sound effect
         this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
-        
+
         // Finish shooting
         WeaponController.s_shooting = false;
     }
