@@ -52,3 +52,10 @@ v.1.6:
 - machine gun bullets impact and holes;
 - fix: audio voices limit increase to 100;
 - fix: fire flash effect makes more realistic.
+
+v.1.7 - 1.7.1:
+- machine gun reloading;
+- machine gun ammo;
+- machine gun take ammo;
+- change weapon by press numbers;
+- upgrade weapon controller script and create new shoot effects class that is general both for pistol and machine gun and controll flash, impact and holes effects behavior.
