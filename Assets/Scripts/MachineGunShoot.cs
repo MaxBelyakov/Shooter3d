@@ -41,8 +41,9 @@ public class MachineGunShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))//&& !WeaponReload.s_reloading)
+        if (Input.GetButton("Fire1") && !WeaponReload.s_reloading)
         {
+            WeaponController.s_shooting = true;
             if (WeaponController.machineGun_MagazineCurrent > 0)
                 machineGun_Animator.SetTrigger("Shoot");
             else
@@ -124,10 +125,13 @@ public class MachineGunShoot : MonoBehaviour
         tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingTransform.position - casingTransform.right * 0.3f - casingTransform.up * 0.6f), 1f, 3f);
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
+
+        WeaponController.s_shooting = false;
     }
 
     void MachineGunNoBullets()
     {
         this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
+        WeaponController.s_shooting = false;
     }
 }

@@ -20,7 +20,7 @@ public class WeaponReload : MonoBehaviour
     void Update()
     {   
         // Waiting for reload button
-        if (Input.GetButtonDown("Reload"))
+        if (Input.GetButtonDown("Reload") && !WeaponController.s_shooting)
         {
             if (WeaponController.pistolMagazineCurrent < WeaponController.pistolMagazineAll && Inventory.s_pistolMagazineInventoryCurrent > 0)
             {

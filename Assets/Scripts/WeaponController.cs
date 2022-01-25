@@ -12,6 +12,8 @@ public class WeaponController : MonoBehaviour
 
     public static int machineGun_MagazineCurrent;
 
+    public static bool s_shooting;
+
     void Start()
     {
         pistolMagazineCurrent = pistolMagazineAll;

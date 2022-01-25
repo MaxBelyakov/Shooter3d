@@ -6,6 +6,7 @@ TagManager:
   tags:
   - pistol magazine ammo
   - pistol casing
+  - machine gun ammo
   layers:
   - Default
   - TransparentFX

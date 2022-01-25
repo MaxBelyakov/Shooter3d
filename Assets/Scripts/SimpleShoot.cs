@@ -49,6 +49,7 @@ public class SimpleShoot : MonoBehaviour
         //If you want a different input, change it here
         if (Input.GetButtonDown("Fire1") && !WeaponReload.s_reloading)
         {
+            WeaponController.s_shooting = true;
             if (WeaponController.pistolMagazineCurrent != 0)
             {
                 //Calls animation on the gun that has the relevant animation events that will fire
@@ -142,12 +143,15 @@ public class SimpleShoot : MonoBehaviour
         tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
         //Add torque to make casing spin in random direction
         tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
+
+        WeaponController.s_shooting = false;
     }
 
     void NoBulletsSounds()
     {
         // Shot sound effect
         this.GetComponent<AudioSource>().PlayOneShot(noBulletsAudio);
+        WeaponController.s_shooting = false;
     }
 
 }
