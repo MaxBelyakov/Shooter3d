@@ -59,3 +59,16 @@ v.1.7 - 1.7.1:
 - machine gun take ammo;
 - change weapon by press numbers;
 - upgrade weapon controller script and create new shoot effects class that is general both for pistol and machine gun and controll flash, impact and holes effects behavior.
+
+v.1.8:
+- add shotgun;
+- shotgun buckshot;
+- shotgun animations;
+- shotgun fire logic;
+- shotgun reloading;
+- shotgun casing;
+- shotgun ammo;
+- shotgun sounds;
+- new falling objects sounds common script;
+- all weapons parametrs move to weapon controller script;
+- fix: debug animation errors.
