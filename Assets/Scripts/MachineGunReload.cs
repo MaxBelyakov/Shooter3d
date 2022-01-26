@@ -12,7 +12,7 @@ public class MachineGunReload : MonoBehaviour
         // Waiting for reload button
         if (Input.GetButtonDown("Reload") && !WeaponController.s_shooting)
         {
-            if (MachineGun.bulletsCurrent < MachineGun.bulletsAll && Inventory.s_machineGun_MagazineInventoryCurrent > 0)
+            if (MachineGun.s_bulletsCurrent < MachineGun.s_bulletsAll && Inventory.s_machineGun_MagazineInventoryCurrent > 0)
             {
                 WeaponController.s_reloading = true;
 
@@ -34,7 +34,7 @@ public class MachineGunReload : MonoBehaviour
     void AddMagazine()
     {
         // Add bullets to counter
-        MachineGun.bulletsCurrent = MachineGun.bulletsAll;
+        MachineGun.s_bulletsCurrent = MachineGun.s_bulletsAll;
 
         // Minus ammo in inventory
         Inventory.s_machineGun_MagazineInventoryCurrent --;

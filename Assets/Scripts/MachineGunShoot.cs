@@ -18,7 +18,7 @@ public class MachineGunShoot : ShootEffects
         {
             WeaponController.s_shooting = true;
 
-            if (MachineGun.bulletsCurrent > 0)
+            if (MachineGun.s_bulletsCurrent > 0)
                 gunAnimator.SetTrigger("Shoot");
             else
                 gunAnimator.SetTrigger("NoBullets");
@@ -29,15 +29,15 @@ public class MachineGunShoot : ShootEffects
     void Shoot()
     {
         // Minus bullet from counter
-        MachineGun.bulletsCurrent -= 1;
+        MachineGun.s_bulletsCurrent -= 1;
 
-        ShowShootingEffects(barrelLocation);
+        ShowShootingEffects(barrelLocation, MachineGun.s_flashDestroyTimer, MachineGun.s_bulletRange, MachineGun.s_shotPower);
     }
 
     // This function creates a casing at the ejection slot. Call by Animation
     void CasingRelease()
     {
-        ShowCasingEffects(casingExitLocation, MachineGun.ejectPower);
+        ShowCasingEffects(casingExitLocation, MachineGun.s_ejectPower);
         
         // Finish shooting
         WeaponController.s_shooting = false;

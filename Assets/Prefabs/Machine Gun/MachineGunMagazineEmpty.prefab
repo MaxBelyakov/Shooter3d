@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6128346909527232173}
   - component: {fileID: 6508922856852740139}
   - component: {fileID: 5621023946592665638}
-  - component: {fileID: -4291475417502725624}
   - component: {fileID: -7427325044934541089}
+  - component: {fileID: 5281059029303589866}
   m_Layer: 0
   m_Name: MachineGunMagazineEmpty
   m_TagString: Untagged
@@ -116,19 +116,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4291475417502725624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2655218392981163935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad1bb171a0ea1a46a0af0c3a968e79f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a_pistolMagazineFall: {fileID: 8300000, guid: f1e9fd8fc1910b04aaa446f252471c71, type: 3}
 --- !u!82 &-7427325044934541089
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,3 +212,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5281059029303589866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2655218392981163935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ab752805f8fa2438322e2c0bdc3d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: f1e9fd8fc1910b04aaa446f252471c71, type: 3}

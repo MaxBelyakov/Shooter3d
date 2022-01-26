@@ -17,7 +17,7 @@ public class PistolShoot : ShootEffects
         if (Input.GetButtonDown("Fire1") && !WeaponController.s_reloading)
         {
             WeaponController.s_shooting = true;
-            if (Pistol.bulletsCurrent != 0)
+            if (Pistol.s_bulletsCurrent != 0)
             {
                 //Calls animation on the gun that has the relevant animation events that will fire
                 gunAnimator.SetTrigger("Fire");
@@ -32,15 +32,15 @@ public class PistolShoot : ShootEffects
     void Shoot()
     {   
         // Minus bullet from counter
-        Pistol.bulletsCurrent -= 1;
+        Pistol.s_bulletsCurrent -= 1;
 
-        ShowShootingEffects(barrelLocation);
+        ShowShootingEffects(barrelLocation, Pistol.s_flashDestroyTimer, Pistol.s_bulletRange, Pistol.s_shotPower);
     }
 
     // This function creates a casing at the ejection slot. Call by Animation
     void CasingRelease()
     {
-        ShowCasingEffects(casingExitLocation, Pistol.ejectPower);
+        ShowCasingEffects(casingExitLocation, Pistol.s_ejectPower);
 
         // Finish shooting
         WeaponController.s_shooting = false;

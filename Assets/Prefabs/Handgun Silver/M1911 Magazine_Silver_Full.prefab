@@ -270,7 +270,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3973233359440670585
+--- !u!114 &5823029261755862401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8107577268597085419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad1bb171a0ea1a46a0af0c3a968e79f, type: 3}
+  m_Script: {fileID: 11500000, guid: b3ab752805f8fa2438322e2c0bdc3d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a_pistolMagazineFall: {fileID: 8300000, guid: f1e9fd8fc1910b04aaa446f252471c71, type: 3}
+  clip: {fileID: 8300000, guid: f1e9fd8fc1910b04aaa446f252471c71, type: 3}
 --- !u!4 &8108783290139396301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000101247158624, guid: 71d42f13891e48c4487496fd15802eda, type: 3}

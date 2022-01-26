@@ -26,11 +26,7 @@ public class ShootEffects : MonoBehaviour
     public AudioClip shotAudio;
     public AudioClip noBulletsAudio;
 
-    private float destroyTimer = 2f;
-    private float shotPower = 30f;
-    private float range = 100f;  // bullet working distance
-
-    public void ShowShootingEffects(Transform point)
+    public void ShowShootingEffects(Transform point, float destroyTimer, float range, float shotPower)
     {
         // Shot sound effect
         this.GetComponent<AudioSource>().PlayOneShot(shotAudio);
