@@ -72,3 +72,9 @@ v.1.8:
 - new falling objects sounds common script;
 - all weapons parametrs move to weapon controller script;
 - fix: debug animation errors.
+
+v.1.9:
+- add bow;
+- add arrow;
+- bow shooting script and animation;
+- arrow move.
