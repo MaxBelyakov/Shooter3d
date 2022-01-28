@@ -78,3 +78,14 @@ v.1.9:
 - add arrow;
 - bow shooting script and animation;
 - arrow move.
+
+v.1.9.1:
+- bow move up when shoot;
+- creates arrow when shoot;
+- correct arrow ballistic parametrs;
+- arrow stuck in wood;
+- arrow impacts with stone, metal;
+- bow sounds (impact, stuck in wood, bow shoot);
+- switch weapon to bow;
+- bow training target;
+- fix: arrow stuck in wood just at first contact.
