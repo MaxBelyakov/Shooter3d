@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BowShoot : MonoBehaviour
@@ -9,38 +7,60 @@ public class BowShoot : MonoBehaviour
     private float stringTime = 0f;
     private float stringTimeCorrection = 0f;
 
+    private bool noArrow = true;
+
     private Animator gunAnimator;
 
     public Transform stringPos;
     private Vector3 stringStartPos;
     public Transform stringEndPos;
+    private Vector3 bowStartPos;
 
     public GameObject arrowPrefab;
+    public AudioClip shootAudio;
 
     private float stringSpeed = 130f;
-    private float shootSpeed = 650f;
+    private float shootSpeed = 850f;
 
     void Start()
     {
         gunAnimator = GetComponent<Animator>();
         stringStartPos = stringPos.localPosition;
+        bowStartPos = this.transform.localPosition;
     }
 
     void Update()
     {
         
-        if (Input.GetMouseButton(0)) //&& !WeaponController.s_reloading)
+        if (Input.GetMouseButton(0))
         {
             stringReturn = false;
+            bowFire = false;
 
             // Calculating string time
             stringTime += Time.deltaTime;
 
-            // String on maximum size
+            // Create new arrow with position correction
+            if (noArrow)
+            {
+                var newArrow = Instantiate(arrowPrefab, stringPos.position + stringPos.right / 150, stringPos.rotation);
+                newArrow.transform.SetParent(stringPos);
+                noArrow = false;
+            }
+
+            // String on maximum size and get up the bow
             if (stringPos.localPosition.y > stringEndPos.localPosition.y)
             {
                 stringPos.localPosition += new Vector3(0, -0.001f, 0) * stringSpeed * Time.deltaTime;
+                
+                // Get up the bow and limit the height
+                if (this.transform.localPosition.y < -0.3f)
+                    this.transform.localPosition += new Vector3(0, 0.01f, 0) * stringSpeed * Time.deltaTime;
             }
+        } else {
+            // Return bow to start position
+            if (noArrow && this.transform.localPosition.y > bowStartPos.y)
+                this.transform.localPosition += new Vector3(0, -0.01f, 0) * stringSpeed * Time.deltaTime;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -51,6 +71,9 @@ public class BowShoot : MonoBehaviour
 
             if (stringTimeCorrection > 1f)
                 stringTimeCorrection = 1f;
+
+            // Shoot sound
+            this.transform.GetComponent<AudioSource>().PlayOneShot(shootAudio);
 
         }
 
@@ -71,7 +94,6 @@ public class BowShoot : MonoBehaviour
             bowFire = false;
             stringPos.localPosition += new Vector3(0, -0.001f, 0) * shootSpeed * Time.deltaTime * stringTimeCorrection;
         }
-        
     }
 
     void ArrowShoot()
@@ -80,10 +102,9 @@ public class BowShoot : MonoBehaviour
         arrow.parent = null;
 
         arrow.gameObject.AddComponent<Rigidbody>();
-        arrow.GetComponent<Rigidbody>().velocity = arrow.transform.up * 20 * stringTimeCorrection;
+        arrow.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        arrow.GetComponent<Rigidbody>().velocity = arrow.transform.up * shootSpeed / 15 * stringTimeCorrection;
 
-        var newArrow = Instantiate(arrowPrefab, stringPos.position, stringPos.rotation);
-        newArrow.transform.SetParent(stringPos);
-
+        noArrow = true;
     }
 }

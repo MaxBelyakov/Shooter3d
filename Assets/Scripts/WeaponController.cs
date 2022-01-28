@@ -6,6 +6,7 @@ public class WeaponController : MonoBehaviour
     public GameObject pistol;
     public GameObject machineGun;
     public GameObject shotgun;
+    public GameObject bow;
 
     public TMP_Text bulletsText;
 
@@ -23,6 +24,7 @@ public class WeaponController : MonoBehaviour
         machineGun.SetActive(false);
         pistol.SetActive(true);
         shotgun.SetActive(false);
+        bow.SetActive(false);
     }
 
     void Update()
@@ -46,6 +48,7 @@ public class WeaponController : MonoBehaviour
             machineGun.SetActive(false);
             pistol.SetActive(true);
             shotgun.SetActive(false);
+            bow.SetActive(false);
         }
         if (Input.GetButtonDown("2"))
         {
@@ -53,6 +56,7 @@ public class WeaponController : MonoBehaviour
             pistol.SetActive(false);
             machineGun.SetActive(true);
             shotgun.SetActive(false);
+            bow.SetActive(false);
         }
         if (Input.GetButtonDown("3"))
         {
@@ -60,6 +64,15 @@ public class WeaponController : MonoBehaviour
             pistol.SetActive(false);
             machineGun.SetActive(false);
             shotgun.SetActive(true);
+            bow.SetActive(false);
+        }
+        if (Input.GetButtonDown("4"))
+        {
+            weapon = "Bow";
+            pistol.SetActive(false);
+            machineGun.SetActive(false);
+            shotgun.SetActive(false);
+            bow.SetActive(true);
         }
     }
 }
