@@ -89,3 +89,9 @@ v.1.9.1:
 - switch weapon to bow;
 - bow training target;
 - fix: arrow stuck in wood just at first contact.
+
+v.1.9.2:
+- bow ammo (arrows pack);
+- arrows put/get to inventory;
+- correct bow shooting behavior, fix errors;
+- fix: popup don't hide.
