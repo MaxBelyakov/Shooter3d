@@ -800,7 +800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717406733745140, guid: d03c4353fda446d4f8df56d422578d64, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1798074416387974, guid: d03c4353fda446d4f8df56d422578d64, type: 3}
       propertyPath: m_Layer
@@ -2626,6 +2626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0962eea3162cc314ab40f277d5013a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pistol: {fileID: 0}
+  machineGun: {fileID: 0}
+  shotgun: {fileID: 0}
+  bow: {fileID: 0}
+  bulletsText: {fileID: 0}
   stringPos: {fileID: 1681302430}
   stringEndPos: {fileID: 27597920}
   arrowPrefab: {fileID: 1959729250425484, guid: 5187dfa4d8f19524e8bbf7c6894b7de7, type: 3}

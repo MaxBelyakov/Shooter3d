@@ -1,49 +1,46 @@
 using UnityEngine;
 
-public class BowShoot : MonoBehaviour
+public class BowShoot : WeaponController
 {
-    private bool bowFire = false;
-    private bool stringReturn = false;
-    private float stringTime = 0f;
-    private float stringTimeCorrection = 0f;
+    private bool bowFire = false;                       // Flag of start/end shooting
+    private bool stringInertia = false;                 // Need to return string in start position after inertia
+    private float stringTime = 0f;                      // How long string was stretched
+    private float stringTimeCorrection = 0f;            // Correction parametr, takes value of "stringTime", not more than 1f
 
-    private bool noArrow = true;
+    private bool noArrow = true;                        // By default there is no arrow. Flag when arrow creates
 
-    private Animator gunAnimator;
+    public Transform stringPos;                         // Current string location
+    private Vector3 stringStartPos;                     // Start string location
+    public Transform stringEndPos;                      // Limit string location
 
-    public Transform stringPos;
-    private Vector3 stringStartPos;
-    public Transform stringEndPos;
-    private Vector3 bowStartPos;
+    private Vector3 bowStartPos;                        // Start bow location
 
-    public GameObject arrowPrefab;
-    public AudioClip shootAudio;
-
-    private float stringSpeed = 130f;
-    private float shootSpeed = 850f;
+    public GameObject arrowPrefab;                      // Arrow Prefab
+    public AudioClip shootAudio;                        // Bow shoot sound
 
     void Start()
     {
-        gunAnimator = GetComponent<Animator>();
+        // Define string and bow start local position
         stringStartPos = stringPos.localPosition;
         bowStartPos = this.transform.localPosition;
     }
 
     void Update()
     {
-        
+        // Start stretch the string
         if (Input.GetMouseButton(0))
         {
-            stringReturn = false;
+            // Reset flags
+            stringInertia = false;
             bowFire = false;
 
             // Calculating string time
             stringTime += Time.deltaTime;
 
-            // Create new arrow with position correction
+            // Create new arrow with position correction about string
             if (noArrow)
             {
-                var newArrow = Instantiate(arrowPrefab, stringPos.position + stringPos.right / 150, stringPos.rotation);
+                GameObject newArrow = Instantiate(arrowPrefab, stringPos.position + stringPos.right / 150, stringPos.rotation);
                 newArrow.transform.SetParent(stringPos);
                 noArrow = false;
             }
@@ -51,59 +48,58 @@ public class BowShoot : MonoBehaviour
             // String on maximum size and get up the bow
             if (stringPos.localPosition.y > stringEndPos.localPosition.y)
             {
-                stringPos.localPosition += new Vector3(0, -0.001f, 0) * stringSpeed * Time.deltaTime;
+                stringPos.localPosition += new Vector3(0, -0.001f, 0) * Bow.stringSpeed * Time.deltaTime;
                 
                 // Get up the bow and limit the height
-                if (this.transform.localPosition.y < -0.3f)
-                    this.transform.localPosition += new Vector3(0, 0.01f, 0) * stringSpeed * Time.deltaTime;
+                if (this.transform.localPosition.y < Bow.heightLimit)
+                    this.transform.localPosition += new Vector3(0, 0.01f, 0) * Bow.stringSpeed * Time.deltaTime;
             }
         } else {
             // Return bow to start position
             if (noArrow && this.transform.localPosition.y > bowStartPos.y)
-                this.transform.localPosition += new Vector3(0, -0.01f, 0) * stringSpeed * Time.deltaTime;
+                this.transform.localPosition += new Vector3(0, -0.01f, 0) * Bow.stringSpeed * Time.deltaTime;
         }
 
+        // Release the string
         if (Input.GetMouseButtonUp(0))
         {
             bowFire = true;
             stringTimeCorrection = stringTime;
             stringTime = 0;
-
             if (stringTimeCorrection > 1f)
                 stringTimeCorrection = 1f;
 
             // Shoot sound
             this.transform.GetComponent<AudioSource>().PlayOneShot(shootAudio);
-
         }
 
-        // Return string to start position with physics correction
+        // Return string to start position with inertia correction and shoot the arrow
         if (bowFire && stringPos.localPosition.y <= stringStartPos.y + 0.01f * stringTimeCorrection)
-        {
-            stringPos.localPosition += new Vector3(0, 0.001f, 0) * shootSpeed * Time.deltaTime * stringTimeCorrection;
-        }
+            stringPos.localPosition += new Vector3(0, 0.001f, 0) * Bow.shootSpeed * Time.deltaTime * stringTimeCorrection;
         else if (bowFire)
-        {
-            stringReturn = true;
             ArrowShoot();
-        }
 
-        // Return string to start position after physics correction
-        if (stringReturn && stringPos.localPosition.y > stringStartPos.y)
+        // Return string to start position after inertia correction
+        if (stringInertia && stringPos.localPosition.y > stringStartPos.y)
         {
             bowFire = false;
-            stringPos.localPosition += new Vector3(0, -0.001f, 0) * shootSpeed * Time.deltaTime * stringTimeCorrection;
+            stringPos.localPosition += new Vector3(0, -0.001f, 0) * Bow.shootSpeed * Time.deltaTime * stringTimeCorrection;
         }
     }
 
     void ArrowShoot()
     {
-        var arrow = stringPos.gameObject.transform.GetChild(0);
+        // Signal to return string in start position
+        stringInertia = true;
+
+        // Unparent the arrow
+        Transform arrow = stringPos.gameObject.transform.GetChild(0);
         arrow.parent = null;
 
+        // Give the arrow physic body and shoot
         arrow.gameObject.AddComponent<Rigidbody>();
         arrow.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        arrow.GetComponent<Rigidbody>().velocity = arrow.transform.up * shootSpeed / 15 * stringTimeCorrection;
+        arrow.GetComponent<Rigidbody>().velocity = arrow.transform.up * Bow.shootSpeed / 15 * stringTimeCorrection;
 
         noArrow = true;
     }

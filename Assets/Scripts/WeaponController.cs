@@ -107,3 +107,10 @@ public class Shotgun : WeaponController
     public static float s_bulletRange = 100f;       // Bullet working distance
     public static int s_buckshotBullets = 6;        // Buckshot bullets amount
 }
+
+public class Bow : WeaponController
+{
+    public static float stringSpeed = 130f;         // Speed of string stretch
+    public static float shootSpeed = 850f;          // Speed of string unstretch
+    public static float heightLimit = -0.3f;        // Bow height limit when shooting
+}
