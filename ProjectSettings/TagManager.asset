@@ -8,6 +8,7 @@ TagManager:
   - pistol casing
   - machine gun ammo
   - shotgun ammo
+  - bow ammo
   layers:
   - Default
   - TransparentFX

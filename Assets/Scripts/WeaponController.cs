@@ -41,6 +41,10 @@ public class WeaponController : MonoBehaviour
         {
             bulletsText.text = "Bullets: " + Shotgun.s_bulletsCurrent + " / " + Shotgun.s_bulletsAll;
         }
+        if (weapon == "Bow")
+        {
+            bulletsText.text = "";
+        }
 
         if (Input.GetButtonDown("1"))
         {

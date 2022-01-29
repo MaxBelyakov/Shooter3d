@@ -31,6 +31,8 @@ public class InspectTarget : MonoBehaviour
                 TargetItem = target.transform.tag, 
                 TargetObject = target.transform.gameObject 
             };
-        }
+        } else
+            targetInfo = null;
+        
     }
 }

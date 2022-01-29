@@ -28,7 +28,7 @@ public class BowShoot : WeaponController
     void Update()
     {
         // Start stretch the string
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !bowFire && Inventory.s_bow_MagazineInventoryCurrent > 0)
         {
             // Reset flags
             stringInertia = false;
@@ -60,8 +60,8 @@ public class BowShoot : WeaponController
                 this.transform.localPosition += new Vector3(0, -0.01f, 0) * Bow.stringSpeed * Time.deltaTime;
         }
 
-        // Release the string
-        if (Input.GetMouseButtonUp(0))
+        // Release the string, except cases when bow still shooting, arrow not ready and no arrows in inventory
+        if (Input.GetMouseButtonUp(0) && !bowFire && !noArrow && Inventory.s_bow_MagazineInventoryCurrent > 0)
         {
             bowFire = true;
             stringTimeCorrection = stringTime;
@@ -71,8 +71,11 @@ public class BowShoot : WeaponController
 
             // Shoot sound
             this.transform.GetComponent<AudioSource>().PlayOneShot(shootAudio);
-        }
 
+            // Minus ammo in inventory
+            Inventory.s_bow_MagazineInventoryCurrent --;
+        }
+        
         // Return string to start position with inertia correction and shoot the arrow
         if (bowFire && stringPos.localPosition.y <= stringStartPos.y + 0.01f * stringTimeCorrection)
             stringPos.localPosition += new Vector3(0, 0.001f, 0) * Bow.shootSpeed * Time.deltaTime * stringTimeCorrection;
