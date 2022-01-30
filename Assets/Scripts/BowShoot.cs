@@ -28,8 +28,11 @@ public class BowShoot : WeaponController
     void Update()
     {
         // Start stretch the string
-        if (Input.GetMouseButton(0) && !bowFire && Inventory.s_bow_MagazineInventoryCurrent > 0)
+        if (Input.GetMouseButton(0) && !bowFire && !stringInertia && Inventory.s_bow_MagazineInventoryCurrent > 0)
         {
+            // There is a difference between "s_shooting" and "bowFire". First show that weapon is working, second - release the string flag
+            WeaponController.s_shooting = true;
+
             // Reset flags
             stringInertia = false;
             bowFire = false;
@@ -87,6 +90,11 @@ public class BowShoot : WeaponController
         {
             bowFire = false;
             stringPos.localPosition += new Vector3(0, -0.001f, 0) * Bow.shootSpeed * Time.deltaTime * stringTimeCorrection;
+        } else if (stringInertia)
+        {
+            // Inertia finished, shooting process is finished
+            stringInertia = false;
+            WeaponController.s_shooting = false;
         }
     }
 

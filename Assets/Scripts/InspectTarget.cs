@@ -33,6 +33,5 @@ public class InspectTarget : MonoBehaviour
             };
         } else
             targetInfo = null;
-        
     }
 }

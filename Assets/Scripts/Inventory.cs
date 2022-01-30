@@ -43,7 +43,8 @@ public class Inventory : MonoBehaviour
             if (InspectTarget.targetInfo.TargetItem == "pistol magazine ammo" 
                 || InspectTarget.targetInfo.TargetItem == "machine gun ammo"
                 || InspectTarget.targetInfo.TargetItem == "shotgun ammo"
-                || InspectTarget.targetInfo.TargetItem == "bow ammo")
+                || InspectTarget.targetInfo.TargetItem == "bow ammo"
+                || InspectTarget.targetInfo.TargetItem == "arrow")
                     popup.text = "To take press 'E'";
 
             // Take ammo after check for shooting or reloading
@@ -96,6 +97,18 @@ public class Inventory : MonoBehaviour
                         // Decrease amount of bullets if take more than inventory limit
                         if (s_bow_MagazineInventoryCurrent > bow_MagazineInventoryAll)
                             s_bow_MagazineInventoryCurrent = bow_MagazineInventoryAll;
+
+                        Destroy(InspectTarget.targetInfo.TargetObject, 0f);
+
+                        // Play sound effect
+                        this.GetComponent<AudioSource>().PlayOneShot(a_magazineTake);
+                    }
+                }
+                // Put arrow in inventory
+                if (InspectTarget.targetInfo.TargetItem == "arrow")
+                {
+                    if (s_bow_MagazineInventoryCurrent < bow_MagazineInventoryAll) {
+                        s_bow_MagazineInventoryCurrent ++;
 
                         Destroy(InspectTarget.targetInfo.TargetObject, 0f);
 

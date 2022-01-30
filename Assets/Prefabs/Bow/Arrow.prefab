@@ -209,9 +209,10 @@ GameObject:
   - component: {fileID: 591272226507119238}
   - component: {fileID: -3021144970478072020}
   - component: {fileID: -4755626758005973360}
+  - component: {fileID: 4082432034852934042}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +243,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959729250425484}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.008763381, y: 0.788934, z: 0.008040306}
@@ -361,3 +362,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4082432034852934042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959729250425484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.008763381, y: 0.788934, z: 0.008040306}
+  m_Center: {x: -0.0014347492, y: 0.30452782, z: -0.0023084567}

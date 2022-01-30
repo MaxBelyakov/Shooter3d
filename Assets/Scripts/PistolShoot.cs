@@ -14,7 +14,7 @@ public class PistolShoot : ShootEffects
     void Update()
     {
         //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1") && !WeaponController.s_reloading)
+        if (Input.GetButtonDown("Fire1") && !WeaponController.s_reloading && !WeaponController.s_shooting)
         {
             WeaponController.s_shooting = true;
             if (Pistol.s_bulletsCurrent != 0)

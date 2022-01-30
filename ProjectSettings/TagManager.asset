@@ -9,6 +9,7 @@ TagManager:
   - machine gun ammo
   - shotgun ammo
   - bow ammo
+  - arrow
   layers:
   - Default
   - TransparentFX

@@ -29,8 +29,12 @@ public class Arrow : MonoBehaviour
                 // Stop the arrow and remove physic body
                 this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 this.transform.GetComponent<Rigidbody>().isKinematic = true;
-                Destroy(this.GetComponent<BoxCollider>());
                 Destroy(this.GetComponent<Rigidbody>());
+
+                // Remove box collider to ignore collision with player, but save triggered collider to take arrow in inventory
+                foreach (BoxCollider col in this.GetComponents<BoxCollider>())
+                    if (col.isTrigger == false)
+                        Destroy(col);
                 
                 // Move arrow inside wood
                 this.transform.Translate(depth * Vector2.up);
