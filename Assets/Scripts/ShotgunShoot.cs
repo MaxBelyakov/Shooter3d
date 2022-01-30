@@ -81,7 +81,7 @@ public class ShotgunShoot : ShootEffects
             {
                 // Check the object for wood, stone, metal to choose effect style
                 GameObject impactEffect = impactStandartEffect;
-                GameObject bulletHoleEffect = bulletHoleStoneEffect;
+                GameObject bulletHoleEffect = null;
                 if (hit.transform.GetComponent<Renderer>() != null)
                 {
                     if (hit.transform.GetComponent<Renderer>().material.name == "stone wall (Instance)")
@@ -104,15 +104,23 @@ public class ShotgunShoot : ShootEffects
                         impactEffect = impactMetalEffect;
                         bulletHoleEffect = bulletHoleMetalEffect;
                     }
+                    if (hit.transform.GetComponent<Renderer>().material.name == "Military target (Instance)")
+                    {
+                        impactEffect = impactWoodEffect;
+                        bulletHoleEffect = bulletHoleWoodEffect;
+                    }
                 }
 
                 // Create an impact effect
                 GameObject impact = Instantiate(impactEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(hit.normal));
                 Destroy(impact, 1f);
-
+                
                 // Create bullet hole effect (rotate to player and move step from object)
-                GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.0001f, Quaternion.LookRotation(-hit.normal));
-                bulletHole.transform.SetParent(hit.transform);
+                if (bulletHoleEffect != null)
+                {
+                    GameObject bulletHole = Instantiate(bulletHoleEffect, hit.point + hit.normal * 0.0001f, Quaternion.LookRotation(-hit.normal));
+                    bulletHole.transform.SetParent(hit.transform);
+                }             
 
                 // Add physics force to target
                 if (hit.rigidbody != null)

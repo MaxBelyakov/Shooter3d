@@ -21,7 +21,7 @@ public class InspectTarget : MonoBehaviour
         // Inspect target element
         RaycastHit target;
         Camera FPSCamera = this.GetComponent<Camera>();
-        if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out target, submitDistance))
+        if (Physics.CapsuleCast(FPSCamera.transform.position, FPSCamera.transform.position, 0.05f, FPSCamera.transform.forward, out target, submitDistance))
         {
             // Save information
             targetInfo = new TargetInfo 
