@@ -95,3 +95,14 @@ v.1.9.2:
 - arrows put/get to inventory;
 - correct bow shooting behavior, fix errors;
 - fix: popup don't hide.
+
+v.2.0 - 2.1:
+- take arrows from world to inventory;
+- upgrade inspect target script, capsule cast instead ray have better active radius;
+- fix: change inventory popup text color;
+- fix: wood holes on target object;
+- fix: wood holes smaller and less small parts when shooting;
+- fix: move througt casing, decrease casing weight;
+- fix: shoot in world objects makes a holes, now just impact;
+- fix: decline change weapon when shooting or reloading;
+- fix: extra shooting makes unlimited bullets.
