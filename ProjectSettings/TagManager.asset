@@ -10,6 +10,10 @@ TagManager:
   - shotgun ammo
   - bow ammo
   - arrow
+  - bow item
+  - shotgun item
+  - machine gun item
+  - pistol item
   layers:
   - Default
   - TransparentFX

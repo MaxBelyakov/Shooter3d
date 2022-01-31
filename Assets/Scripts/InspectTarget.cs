@@ -18,7 +18,8 @@ public class InspectTarget : MonoBehaviour
 
     void Update()
     {
-        // Inspect target element
+        // Inspect target element. Look inside collider element to find other colliders inside collider.
+        // Use capasule cast to expand ray of search
         RaycastHit target;
         Camera FPSCamera = this.GetComponent<Camera>();
         if (Physics.CapsuleCast(FPSCamera.transform.position, FPSCamera.transform.position, 0.05f, FPSCamera.transform.forward, out target, submitDistance))
@@ -26,10 +27,10 @@ public class InspectTarget : MonoBehaviour
             // Save information
             targetInfo = new TargetInfo 
             { 
-                Name = target.transform.name, 
+                Name = target.collider.transform.name, 
                 Distance = target.distance, 
-                TargetItem = target.transform.tag, 
-                TargetObject = target.transform.gameObject 
+                TargetItem = target.collider.transform.tag, 
+                TargetObject = target.collider.transform.gameObject 
             };
         } else
             targetInfo = null;

@@ -266,6 +266,7 @@ MonoBehaviour:
   hitWoodAudio: {fileID: 8300000, guid: 31687626151b36844a058cc73ef77e57, type: 3}
   impactAudioStandart: {fileID: 8300000, guid: 63213e6b3fe15ad4cb5d40dfaedd01b0, type: 3}
   impactAudioMetal: {fileID: 8300000, guid: 5a830963ffb79ab419b59804cf67856a, type: 3}
+  dropAudio: {fileID: 8300000, guid: 20ddc007dcc6bc548b8311ab1a1be7e1, type: 3}
 --- !u!82 &-4755626758005973360
 AudioSource:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Arrow : MonoBehaviour
     public AudioClip hitWoodAudio;                      // Sound of hit arrow in wood
     public AudioClip impactAudioStandart;               // Sound of standart arrow impact
     public AudioClip impactAudioMetal;                  // Sound of arrow impact in metal
+    public AudioClip dropAudio;                         // Sound of arrow drop
 
     void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +25,8 @@ public class Arrow : MonoBehaviour
             // Arrow behavior when hit in wood
             if (collision.transform.GetComponent<Renderer>().material.name == "laminate (Instance)"
                 || collision.transform.GetComponent<Renderer>().material.name == "wooden box (Instance)"
-                || collision.transform.GetComponent<Renderer>().material.name == "Military target (Instance)")
+                || collision.transform.GetComponent<Renderer>().material.name == "Military target (Instance)"
+                || collision.transform.GetComponent<Renderer>().material.name == "BulletDecalWood (Instance)")
             {
                 // Stop the arrow and remove physic body
                 this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -76,6 +78,8 @@ public class Arrow : MonoBehaviour
                 GameObject impact = Instantiate(impactEffect, pos, rot);
                 Destroy(impact, 1f);
             }
-        }
+        } else if (!firstCollision && collision.relativeVelocity.magnitude > 3f && collision.transform.name != "Player")
+            // Check collision speed if fall fast play sound and ignore player collision
+            this.GetComponent<AudioSource>().PlayOneShot(dropAudio);
     }
 }
