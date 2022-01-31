@@ -106,3 +106,12 @@ v.2.0 - 2.1:
 - fix: shoot in world objects makes a holes, now just impact;
 - fix: decline change weapon when shooting or reloading;
 - fix: extra shooting makes unlimited bullets.
+
+v.2.2:
+- arrow drop sound;
+- bow pickup and drop;
+- pistol pickup and drop;
+- shotgun pickup and drop;
+- machine gun pickup and drop;
+- fix: can't get arrow from wooden box;
+- fix: arrow impact to wood holes.
