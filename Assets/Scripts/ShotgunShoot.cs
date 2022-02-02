@@ -2,14 +2,8 @@ using UnityEngine;
 
 public class ShotgunShoot : ShootEffects
 {
-    private Animator gunAnimator;
     public Transform barrelLocation;
     public Transform casingExitLocation;
-
-    void Start()
-    {
-        gunAnimator = GetComponent<Animator>();
-    }
 
     void Update()
     {
@@ -20,10 +14,10 @@ public class ShotgunShoot : ShootEffects
             if (Shotgun.s_bulletsCurrent != 0)
             {
                 //Calls animation on the gun that has the relevant animation events that will fire
-                gunAnimator.SetTrigger("Fire");
+                this.GetComponent<Animator>().SetTrigger("Fire");
             } else {
                 // No bullets animation
-                gunAnimator.SetTrigger("noBullets");
+                this.GetComponent<Animator>().SetTrigger("noBullets");
             }
         }
     }
@@ -84,30 +78,17 @@ public class ShotgunShoot : ShootEffects
                 GameObject bulletHoleEffect = null;
                 if (hit.transform.GetComponent<Renderer>() != null)
                 {
-                    if (hit.transform.GetComponent<Renderer>().material.name == "stone wall (Instance)")
+                    string materialName = MaterialCheck(hit.transform.GetComponent<Renderer>().material.name);
+                    if (materialName == "stone")
                     {
                         impactEffect = impactStoneEffect;
                         bulletHoleEffect = bulletHoleStoneEffect;
-                    }
-                    if (hit.transform.GetComponent<Renderer>().material.name == "laminate (Instance)")
-                    {
+                    } else if (materialName == "wood") {
                         impactEffect = impactWoodEffect;
                         bulletHoleEffect = bulletHoleWoodEffect;
-                    }
-                    if (hit.transform.GetComponent<Renderer>().material.name == "wooden box (Instance)")
-                    {
-                        impactEffect = impactWoodEffect;
-                        bulletHoleEffect = bulletHoleWoodEffect;
-                    }
-                    if (hit.transform.GetComponent<Renderer>().material.name == "MetalSurface (Instance)")
-                    {
+                    } else if (materialName == "metal") {
                         impactEffect = impactMetalEffect;
                         bulletHoleEffect = bulletHoleMetalEffect;
-                    }
-                    if (hit.transform.GetComponent<Renderer>().material.name == "Military target (Instance)")
-                    {
-                        impactEffect = impactWoodEffect;
-                        bulletHoleEffect = bulletHoleWoodEffect;
                     }
                 }
 

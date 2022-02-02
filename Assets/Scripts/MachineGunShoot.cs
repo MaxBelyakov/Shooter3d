@@ -2,15 +2,8 @@
 
 public class MachineGunShoot : ShootEffects
 {
-    private Animator gunAnimator;
-
     public Transform barrelLocation;
     public Transform casingExitLocation;
-
-    void Start()
-    {
-        gunAnimator = GetComponent<Animator>();
-    }
 
     void Update()
     {
@@ -19,9 +12,9 @@ public class MachineGunShoot : ShootEffects
             WeaponController.s_shooting = true;
 
             if (MachineGun.s_bulletsCurrent > 0)
-                gunAnimator.SetTrigger("Shoot");
+                this.GetComponent<Animator>().SetTrigger("Shoot");
             else
-                gunAnimator.SetTrigger("NoBullets");
+                this.GetComponent<Animator>().SetTrigger("NoBullets");
         }
     }
 

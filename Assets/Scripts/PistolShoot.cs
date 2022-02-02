@@ -2,14 +2,8 @@
 
 public class PistolShoot : ShootEffects
 {
-    private Animator gunAnimator;
     public Transform barrelLocation;
     public Transform casingExitLocation;
-
-    void Start()
-    {
-        gunAnimator = GetComponent<Animator>();
-    }
 
     void Update()
     {
@@ -20,10 +14,10 @@ public class PistolShoot : ShootEffects
             if (Pistol.s_bulletsCurrent != 0)
             {
                 //Calls animation on the gun that has the relevant animation events that will fire
-                gunAnimator.SetTrigger("Fire");
+                this.GetComponent<Animator>().SetTrigger("Fire");
             } else {
                 // No bullets animation
-                gunAnimator.SetTrigger("noBullets");
+                this.GetComponent<Animator>().SetTrigger("noBullets");
             }
         }
     }

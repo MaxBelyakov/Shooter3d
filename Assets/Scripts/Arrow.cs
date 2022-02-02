@@ -1,14 +1,10 @@
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : ShootEffects
 {
     private float depth = 0.3f;                         // Depth that arrow move in target
 
     private bool firstCollision = true;                 // Flag that signal about first arrow collision
-
-    public GameObject impactStandartEffect;             // Impact standart effect prefab
-    public GameObject impactStoneEffect;                // Impact stone effect prefab
-    public GameObject impactMetalEffect;                // Impact metal effect prefab
 
     public AudioClip hitWoodAudio;                      // Sound of hit arrow in wood
     public AudioClip impactAudioStandart;               // Sound of standart arrow impact
@@ -22,11 +18,12 @@ public class Arrow : MonoBehaviour
             // Arrow get stuck in wood just at first collision
             firstCollision = false;
 
+            // Set default imapct and hole effects
+            impactEffect = impactStandartEffect;
+            bulletHoleEffect = null;
+
             // Arrow behavior when hit in wood
-            if (collision.transform.GetComponent<Renderer>().material.name == "laminate (Instance)"
-                || collision.transform.GetComponent<Renderer>().material.name == "wooden box (Instance)"
-                || collision.transform.GetComponent<Renderer>().material.name == "Military target (Instance)"
-                || collision.transform.GetComponent<Renderer>().material.name == "BulletDecalWood (Instance)")
+            if (MaterialCheck(collision.transform.GetComponent<Renderer>().material.name) == "wood")
             {
                 // Stop the arrow and remove physic body
                 this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -45,7 +42,7 @@ public class Arrow : MonoBehaviour
                 if (collision.transform.GetComponent<Rigidbody>() != null)
                     collision.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 
-                // Fix: arrow become flat when hit the floor. It is because of deifference with the floor scale
+                // Fix: arrow become flat when hit the floor. It is because of difference with the floor scale
                 if (collision.transform.GetComponent<Renderer>().material.name == "laminate (Instance)")
                     this.transform.parent = collision.transform.parent;
                 else
@@ -57,12 +54,11 @@ public class Arrow : MonoBehaviour
             } else {
 
                 // Check the object for stone and metal to choose effect style
-                GameObject impactEffect = impactStandartEffect;
                 AudioClip impactAudio = impactAudioStandart;
-                if (collision.transform.GetComponent<Renderer>().material.name == "stone wall (Instance)")
+                if (MaterialCheck(collision.transform.GetComponent<Renderer>().material.name) == "stone")
                     impactEffect = impactStoneEffect;
 
-                if (collision.transform.GetComponent<Renderer>().material.name == "MetalSurface (Instance)")
+                if (MaterialCheck(collision.transform.GetComponent<Renderer>().material.name) == "metal")
                 {
                     impactEffect = impactMetalEffect;
                     impactAudio = impactAudioMetal;

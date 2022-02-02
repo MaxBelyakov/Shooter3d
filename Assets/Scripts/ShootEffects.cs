@@ -4,11 +4,15 @@ Class is inherited by "MachineGunShoot" and "PistolShoot" classes
 */
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ShootEffects : MonoBehaviour
 {
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+
+    public static GameObject impactEffect;
+    public static GameObject bulletHoleEffect;
 
     public GameObject impactStandartEffect;
 
@@ -42,36 +46,26 @@ public class ShootEffects : MonoBehaviour
         Camera FPSCamera = FPCharacter.GetComponent<Camera>();
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit, range))
         {
+            // Set default impact and hole effects
+            impactEffect = impactStandartEffect;
+            bulletHoleEffect = null;
+            
             // Check the object for wood, stone, metal to choose effect style
-            GameObject impactEffect = impactStandartEffect;
-            GameObject bulletHoleEffect = null;
             if (hit.transform.GetComponent<Renderer>() != null)
             {
-                if (hit.transform.GetComponent<Renderer>().material.name == "stone wall (Instance)")
+                string materialName = MaterialCheck(hit.transform.GetComponent<Renderer>().material.name);
+                if (materialName == "stone")
                 {
                     impactEffect = impactStoneEffect;
                     bulletHoleEffect = bulletHoleStoneEffect;
-                }
-                if (hit.transform.GetComponent<Renderer>().material.name == "laminate (Instance)")
-                {
+                } else if (materialName == "wood") {
                     impactEffect = impactWoodEffect;
                     bulletHoleEffect = bulletHoleWoodEffect;
-                }
-                if (hit.transform.GetComponent<Renderer>().material.name == "wooden box (Instance)")
-                {
-                    impactEffect = impactWoodEffect;
-                    bulletHoleEffect = bulletHoleWoodEffect;
-                }
-                if (hit.transform.GetComponent<Renderer>().material.name == "MetalSurface (Instance)")
-                {
+                } else if (materialName == "metal") {
                     impactEffect = impactMetalEffect;
                     bulletHoleEffect = bulletHoleMetalEffect;
                 }
-                if (hit.transform.GetComponent<Renderer>().material.name == "Military target (Instance)")
-                {
-                    impactEffect = impactWoodEffect;
-                    bulletHoleEffect = bulletHoleWoodEffect;
-                }
+                Debug.Log(hit.transform.GetComponent<Renderer>().material.name);
             }
 
             // Create an impact effect
@@ -102,5 +96,32 @@ public class ShootEffects : MonoBehaviour
         casing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(power * 0.7f, power), (point.position - point.right * 0.3f - point.up * 0.6f), 1f, 3f);
         //Add torque to make casing spin in random direction
         casing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
+    }
+
+    // Define what type of material hit the bullet
+    public string MaterialCheck(string target)
+    {
+        // Stone materials
+        List<string> stoneMaterialsList = new List<string>
+        {"stone wall (Instance)", "stone_wall_2_d (Instance)", "stone_wall_3_d (Instance)"};
+
+        // Wood materials
+        List<string> woodMaterialsList = new List<string>
+        {"laminate (Instance)", "wooden box (Instance)", "wood_1_d (Instance)", "Chairs_MAT (Instance)",
+        "Military target (Instance)", "timber_1_fixed_d (Instance)", "wooden-boards-texture_d (Instance)",
+        "BulletDecalWood (Instance)"};
+
+        // Metal materials
+        List<string> metalMaterialsList = new List<string>
+        {"MetalSurface (Instance)", "cont_big_mat_2 (Instance)", "_locker_mat (Instance)", "_mat_lock (Instance)"};
+
+        if (stoneMaterialsList.Contains(target))
+            return "stone";
+        else if (woodMaterialsList.Contains(target))
+            return "wood";
+        else if (metalMaterialsList.Contains(target))
+            return "metal";
+        else
+            return null;
     }
 }
