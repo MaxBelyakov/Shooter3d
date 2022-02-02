@@ -115,3 +115,9 @@ v.2.2:
 - machine gun pickup and drop;
 - fix: can't get arrow from wooden box;
 - fix: arrow impact to wood holes.
+
+v.2.3:
+- level redesign;
+- new items, objects, constructions;
+- new materials, textures;
+- weapons material check merge to common function in shootingeffects script.
