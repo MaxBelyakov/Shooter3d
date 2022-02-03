@@ -121,3 +121,9 @@ v.2.3:
 - new items, objects, constructions;
 - new materials, textures;
 - weapons material check merge to common function in shootingeffects script.
+
+v.2.4:
+- update level design;
+- update objects behavior and physics;
+- holes when hit books;
+- make bullet holes smaller for wood, metal and stone.
