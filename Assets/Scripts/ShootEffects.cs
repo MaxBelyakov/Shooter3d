@@ -103,17 +103,21 @@ public class ShootEffects : MonoBehaviour
     {
         // Stone materials
         List<string> stoneMaterialsList = new List<string>
-        {"stone wall (Instance)", "stone_wall_2_d (Instance)", "stone_wall_3_d (Instance)"};
+        {"stone wall (Instance)", "stone_wall_2_d (Instance)", "stone_wall_3_d (Instance)", "concrete_1_mat (Instance)",
+        "granite_1_d (Instance)"};
 
         // Wood materials
         List<string> woodMaterialsList = new List<string>
         {"laminate (Instance)", "wooden box (Instance)", "wood_1_d (Instance)", "Chairs_MAT (Instance)",
         "Military target (Instance)", "timber_1_fixed_d (Instance)", "wooden-boards-texture_d (Instance)",
-        "BulletDecalWood (Instance)"};
+        "BulletDecalWood (Instance)", "paper (Instance)", "_wood_barrel_mat (Instance)", "bag_mat 2 (Instance)",
+        "wood_3_d (Instance)", "bark_2_d (Instance)", "trunk_1_d (Instance)", "Grass (Instance)"};
 
         // Metal materials
         List<string> metalMaterialsList = new List<string>
-        {"MetalSurface (Instance)", "cont_big_mat_2 (Instance)", "_locker_mat (Instance)", "_mat_lock (Instance)"};
+        {"MetalSurface (Instance)", "cont_big_mat_2 (Instance)", "_locker_mat (Instance)", "_mat_lock (Instance)", 
+        "cola_can (Instance)", "barrel_mat_1 (Instance)", "Barrel 1 (Instance)", "walls_mat (Instance)", "iron (Instance)",
+        "dark_iron (Instance)"};
 
         if (stoneMaterialsList.Contains(target))
             return "stone";

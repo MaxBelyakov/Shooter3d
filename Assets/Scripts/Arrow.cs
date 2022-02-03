@@ -43,7 +43,7 @@ public class Arrow : ShootEffects
                     collision.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 
                 // Fix: arrow become flat when hit the floor. It is because of difference with the floor scale
-                if (collision.transform.GetComponent<Renderer>().material.name == "laminate (Instance)")
+                if (collision.transform.GetComponent<Renderer>().material.name == "Grass (Instance)")
                     this.transform.parent = collision.transform.parent;
                 else
                     this.transform.parent = collision.transform;
