@@ -68,6 +68,14 @@ public class ShootEffects : MonoBehaviour
                 Debug.Log(hit.transform.GetComponent<Renderer>().material.name);
             }
 
+            // Iron chain destroy on hit with no impact and bullet hole effects
+            if (hit.transform.tag == "chain" && hit.transform.GetComponent<HingeJoint>() != null)
+            {
+                Destroy(hit.transform.GetComponent<HingeJoint>());
+                impactEffect = impactStandartEffect;
+                bulletHoleEffect = null;
+            }
+
             // Create an impact effect
             GameObject impact = Instantiate(impactEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(hit.normal));
             Destroy(impact, 1f);
@@ -111,7 +119,8 @@ public class ShootEffects : MonoBehaviour
         {"laminate (Instance)", "wooden box (Instance)", "wood_1_d (Instance)", "Chairs_MAT (Instance)",
         "Military target (Instance)", "timber_1_fixed_d (Instance)", "wooden-boards-texture_d (Instance)",
         "BulletDecalWood (Instance)", "paper (Instance)", "_wood_barrel_mat (Instance)", "bag_mat 2 (Instance)",
-        "wood_3_d (Instance)", "bark_2_d (Instance)", "trunk_1_d (Instance)", "Grass (Instance)"};
+        "wood_3_d (Instance)", "bark_2_d (Instance)", "trunk_1_d (Instance)", "Grass (Instance)", "Bathroom_Oven_MAT (Instance)",
+        "platform_mat_b (Instance)"};
 
         // Metal materials
         List<string> metalMaterialsList = new List<string>

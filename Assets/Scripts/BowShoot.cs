@@ -109,6 +109,7 @@ public class BowShoot : WeaponController
 
         // Give the arrow physic body and shoot
         arrow.gameObject.AddComponent<Rigidbody>();
+        arrow.GetComponent<Rigidbody>().mass = Bow.arrowMass;
         arrow.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         arrow.GetComponent<Rigidbody>().velocity = arrow.transform.up * Bow.shootSpeed / 15 * stringTimeCorrection;
 

@@ -26,7 +26,10 @@ public class Arrow : ShootEffects
             if (MaterialCheck(collision.transform.GetComponent<Renderer>().material.name) == "wood")
             {
                 // Stop the arrow and remove physic body
-                this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //this.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                if (collision.transform.GetComponent<Rigidbody>() != null)
+                    collision.transform.GetComponent<Rigidbody>().AddForce(-Vector3.forward, ForceMode.Impulse);
+
                 this.transform.GetComponent<Rigidbody>().isKinematic = true;
                 Destroy(this.GetComponent<Rigidbody>());
 

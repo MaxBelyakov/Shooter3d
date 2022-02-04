@@ -160,7 +160,7 @@ public class Pistol : WeaponController
     public static int s_bulletsCurrent;             // Current bullets in magazine
     public static float s_ejectPower = 50f;        // Power of casing exit
     public static float s_flashDestroyTimer = 2f;   // Shot flash destroy time
-    public static float s_shotPower = 30f;          // Shot power
+    public static float s_shotPower = 80f;          // Shot power
     public static float s_bulletRange = 100f;       // Bullet working distance
 }
 
@@ -170,7 +170,7 @@ public class MachineGun : WeaponController
     public static int s_bulletsCurrent;             // Current bullets in magazine
     public static float s_ejectPower = 50f;        // Power of casing exit
     public static float s_flashDestroyTimer = 2f;   // Shot flash destroy time
-    public static float s_shotPower = 30f;          // Shot power
+    public static float s_shotPower = 100f;          // Shot power
     public static float s_bulletRange = 100f;       // Bullet working distance
 }
 
@@ -180,7 +180,7 @@ public class Shotgun : WeaponController
     public static int s_bulletsCurrent;             // Current bullets in magazine
     public static float s_ejectPower = 250f;        // Power of casing exit
     public static float s_flashDestroyTimer = 2f;   // Shot flash destroy time
-    public static float s_shotPower = 30f;          // Shot power
+    public static float s_shotPower = 130f;          // Shot power
     public static float s_bulletRange = 100f;       // Bullet working distance
     public static int s_buckshotBullets = 6;        // Buckshot bullets amount
 }
@@ -190,4 +190,5 @@ public class Bow : WeaponController
     public static float stringSpeed = 130f;         // Speed of string stretch
     public static float shootSpeed = 850f;          // Speed of string unstretch
     public static float heightLimit = -0.3f;        // Bow height limit when shooting
+    public static float arrowMass = 0.03f;          // Arrow mass, affect to hit power
 }

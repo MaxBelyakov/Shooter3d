@@ -14,6 +14,7 @@ TagManager:
   - shotgun item
   - machine gun item
   - pistol item
+  - chain
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Weapon
   - 
   - 
   - 

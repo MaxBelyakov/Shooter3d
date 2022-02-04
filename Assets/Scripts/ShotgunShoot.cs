@@ -92,6 +92,14 @@ public class ShotgunShoot : ShootEffects
                     }
                 }
 
+                // Iron chain destroy on hit with no impact and bullet hole effects
+                if (hit.transform.tag == "chain" && hit.transform.GetComponent<HingeJoint>() != null)
+                {
+                    Destroy(hit.transform.GetComponent<HingeJoint>());
+                    impactEffect = impactStandartEffect;
+                    bulletHoleEffect = null;
+                }
+
                 // Create an impact effect
                 GameObject impact = Instantiate(impactEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(hit.normal));
                 Destroy(impact, 1f);
