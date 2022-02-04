@@ -127,3 +127,15 @@ v.2.4:
 - update objects behavior and physics;
 - holes when hit books;
 - make bullet holes smaller for wood, metal and stone.
+
+v.2.5:
+- military targets with chains;
+- chains can be destroyed by bullets;
+- update shooting power for all weapons;
+- update body mass for all objects;
+- arrow give extra force to target;
+- decrease player jump;
+- update basket collider;
+- fix: arrow makes holes in metal;
+- fix: weapon get inside the walls and objects;
+- fix: mesh and rigidbody debug errors.
