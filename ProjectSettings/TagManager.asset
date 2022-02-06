@@ -15,6 +15,7 @@ TagManager:
   - machine gun item
   - pistol item
   - chain
+  - dummy
   layers:
   - Default
   - TransparentFX

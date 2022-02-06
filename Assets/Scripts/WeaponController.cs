@@ -18,7 +18,7 @@ public class WeaponController : MonoBehaviour
     public static bool s_shooting = false;              // Global flag, show weapon is shooting now
     public static bool s_reloading = false;             // Global flag, show weapon is reloading now
 
-    private string weapon;                              // Name of weapon in hands at the current time
+    public static string s_weapon;                      // Name of weapon in hands at the current time
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class WeaponController : MonoBehaviour
         Shotgun.s_bulletsCurrent = Shotgun.s_bulletsAll;
 
         // Set default weapon as no weapon
-        weapon = "noWeapon";
+        s_weapon = "noWeapon";
         pistol.SetActive(false);
         machineGun.SetActive(false);
         shotgun.SetActive(false);
@@ -38,21 +38,21 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         // Update bullets text depends of selected weapon
-        if (weapon == "noWeapon")
+        if (s_weapon == "noWeapon")
             bulletsText.text = "";
-        if (weapon == "Pistol")
+        if (s_weapon == "Pistol")
             bulletsText.text = "Bullets: " + Pistol.s_bulletsCurrent + " / " + Pistol.s_bulletsAll;
-        if (weapon == "Machine Gun")
+        if (s_weapon == "Machine Gun")
             bulletsText.text = "Bullets: " + MachineGun.s_bulletsCurrent + " / " + MachineGun.s_bulletsAll;
-        if (weapon == "Shotgun")
+        if (s_weapon == "Shotgun")
             bulletsText.text = "Bullets: " + Shotgun.s_bulletsCurrent + " / " + Shotgun.s_bulletsAll;
-        if (weapon == "Bow")
+        if (s_weapon == "Bow")
             bulletsText.text = "";
 
         // Listen to change weapon input. Check for weapon in inventory, shooting and reloading flags
         if (Input.GetButtonDown("1") && Inventory.s_pistolItem && !s_shooting && !s_reloading)
         {
-            weapon = "Pistol";
+            s_weapon = "Pistol";
             machineGun.SetActive(false);
             pistol.SetActive(true);
             shotgun.SetActive(false);
@@ -60,7 +60,7 @@ public class WeaponController : MonoBehaviour
         }
         if (Input.GetButtonDown("2") && Inventory.s_machineGunItem && !s_shooting && !s_reloading)
         {
-            weapon = "Machine Gun";
+            s_weapon = "Machine Gun";
             pistol.SetActive(false);
             machineGun.SetActive(true);
             shotgun.SetActive(false);
@@ -68,7 +68,7 @@ public class WeaponController : MonoBehaviour
         }
         if (Input.GetButtonDown("3") && Inventory.s_shotgunItem && !s_shooting && !s_reloading)
         {
-            weapon = "Shotgun";
+            s_weapon = "Shotgun";
             pistol.SetActive(false);
             machineGun.SetActive(false);
             shotgun.SetActive(true);
@@ -76,7 +76,7 @@ public class WeaponController : MonoBehaviour
         }
         if (Input.GetButtonDown("4") && Inventory.s_bowItem && !s_shooting && !s_reloading)
         {
-            weapon = "Bow";
+            s_weapon = "Bow";
             pistol.SetActive(false);
             machineGun.SetActive(false);
             shotgun.SetActive(false);
@@ -86,7 +86,7 @@ public class WeaponController : MonoBehaviour
         // Listen for drop weapon input. Check for shooting and reloading flags
         if (Input.GetButtonDown("Drop") && !s_shooting && !s_reloading)
         {            
-            if (weapon == "Pistol")
+            if (s_weapon == "Pistol")
             {
                 // Hide weapon in hands
                 pistol.SetActive(false);
@@ -100,10 +100,10 @@ public class WeaponController : MonoBehaviour
                 pistolItem.GetComponent<Rigidbody>().AddTorque(transform.forward * 25f);
 
                 // Select free hands
-                weapon = "noWeapon";
+                s_weapon = "noWeapon";
                 
             }
-            if (weapon == "Machine Gun")
+            if (s_weapon == "Machine Gun")
             {
                 // Hide weapon in hands
                 machineGun.SetActive(false);
@@ -117,9 +117,9 @@ public class WeaponController : MonoBehaviour
                 machineGunItem.GetComponent<Rigidbody>().AddTorque(transform.up * 25f);
 
                 // Select free hands
-                weapon = "noWeapon";
+                s_weapon = "noWeapon";
             }
-            if (weapon == "Shotgun")
+            if (s_weapon == "Shotgun")
             {
                 // Hide weapon in hands
                 shotgun.SetActive(false);
@@ -131,11 +131,12 @@ public class WeaponController : MonoBehaviour
                 GameObject shotgunItem = Instantiate(shotgunItemPrefab, transform.position + transform.forward + transform.up / 3f, transform.rotation);
                 shotgunItem.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
                 shotgunItem.GetComponent<Rigidbody>().AddTorque(transform.up * 25f);
+                shotgunItem.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
 
                 // Select free hands
-                weapon = "noWeapon";
+                s_weapon = "noWeapon";
             }
-            if (weapon == "Bow")
+            if (s_weapon == "Bow")
             {
                 // Hide weapon in hands
                 bow.SetActive(false);
@@ -148,7 +149,7 @@ public class WeaponController : MonoBehaviour
                 bowItem.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
 
                 // Select free hands
-                weapon = "noWeapon";
+                s_weapon = "noWeapon";
             }
         }
     }

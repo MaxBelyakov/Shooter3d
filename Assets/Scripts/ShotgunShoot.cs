@@ -100,6 +100,17 @@ public class ShotgunShoot : ShootEffects
                     bulletHoleEffect = null;
                 }
 
+                // Hit dummy target, check for "dummy" tag also parent object because bullet can hit the bullet hole
+                if ((hit.transform.tag == "dummy" || hit.transform.parent.tag == "dummy") 
+                    && DummyGenerator.s_dummyWeapon == WeaponController.s_weapon)
+                {
+                    // Dummy weapon compares with current player weapon and start drop the dummy
+                    hit.transform.gameObject.AddComponent<Rigidbody>();
+                    hit.transform.gameObject.transform.GetComponent<Rigidbody>().mass = DummyGenerator.s_dummyMass;
+                    hit.transform.tag = "Untagged";
+                    DummyGenerator.s_dummy = false;
+                }
+
                 // Create an impact effect
                 GameObject impact = Instantiate(impactEffect, hit.point + hit.normal * 0.02f, Quaternion.LookRotation(hit.normal));
                 Destroy(impact, 1f);

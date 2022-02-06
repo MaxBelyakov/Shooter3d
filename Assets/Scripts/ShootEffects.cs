@@ -65,7 +65,6 @@ public class ShootEffects : MonoBehaviour
                     impactEffect = impactMetalEffect;
                     bulletHoleEffect = bulletHoleMetalEffect;
                 }
-                Debug.Log(hit.transform.GetComponent<Renderer>().material.name);
             }
 
             // Iron chain destroy on hit with no impact and bullet hole effects
@@ -74,6 +73,17 @@ public class ShootEffects : MonoBehaviour
                 Destroy(hit.transform.GetComponent<HingeJoint>());
                 impactEffect = impactStandartEffect;
                 bulletHoleEffect = null;
+            }
+
+            // Hit dummy target, check for "dummy" tag also parent object because bullet can hit the bullet hole
+            if ((hit.transform.tag == "dummy" || hit.transform.parent.tag == "dummy") 
+                && DummyGenerator.s_dummyWeapon == WeaponController.s_weapon)
+            {
+                // Dummy weapon compares with current player weapon and start drop the dummy
+                hit.transform.gameObject.AddComponent<Rigidbody>();
+                hit.transform.gameObject.transform.GetComponent<Rigidbody>().mass = DummyGenerator.s_dummyMass;
+                hit.transform.tag = "Untagged";
+                DummyGenerator.s_dummy = false;
             }
 
             // Create an impact effect
@@ -120,7 +130,8 @@ public class ShootEffects : MonoBehaviour
         "Military target (Instance)", "timber_1_fixed_d (Instance)", "wooden-boards-texture_d (Instance)",
         "BulletDecalWood (Instance)", "paper (Instance)", "_wood_barrel_mat (Instance)", "bag_mat 2 (Instance)",
         "wood_3_d (Instance)", "bark_2_d (Instance)", "trunk_1_d (Instance)", "Grass (Instance)", "Bathroom_Oven_MAT (Instance)",
-        "platform_mat_b (Instance)"};
+        "platform_mat_b (Instance)", "Pistol dummy (Instance)", "Machine gun dummy (Instance)", "Shotgun dummy (Instance)",
+        "Bow dummy (Instance)"};
 
         // Metal materials
         List<string> metalMaterialsList = new List<string>
