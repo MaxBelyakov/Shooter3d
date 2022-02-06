@@ -139,3 +139,8 @@ v.2.5:
 - fix: arrow makes holes in metal;
 - fix: weapon get inside the walls and objects;
 - fix: mesh and rigidbody debug errors.
+
+v.2.6:
+- add target dummies;
+- target dummy random respawn;
+- target dummy for different kind of weapons.
