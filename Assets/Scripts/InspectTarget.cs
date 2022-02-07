@@ -12,9 +12,9 @@ public class TargetInfo
 // Collect information about current target
 public class InspectTarget : MonoBehaviour
 {
-    public float submitDistance = 2f;               // Distance to interact with object
+    private float submitDistance = 2.4f;               // Distance to interact with object
 
-    public static TargetInfo targetInfo;            // Save inforamation about current target here
+    public static TargetInfo targetInfo;            // Save information about current target here
 
     void Update()
     {

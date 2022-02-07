@@ -23,7 +23,7 @@ public class DummyGenerator : MonoBehaviour
             // Random choose dummy item and save dummy weapon flag
             object[,] dummyArray = new object[,] 
                 {{pistolDummy, "Pistol"}, {machineGunDummy, "Machine Gun"}, {shotgunDummy, "Shotgun"}, {bowDummy, "Bow"}};
-            int rnd = new System.Random().Next(1, 4);
+            int rnd = new System.Random().Next(0, 4);
             GameObject dummyItem = (GameObject) dummyArray[rnd, 0];
             s_dummyWeapon = (string) dummyArray[rnd, 1];
 

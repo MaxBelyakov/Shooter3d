@@ -101,7 +101,7 @@ public class ShotgunShoot : ShootEffects
                 }
 
                 // Hit dummy target, check for "dummy" tag also parent object because bullet can hit the bullet hole
-                if ((hit.transform.tag == "dummy" || hit.transform.parent.tag == "dummy") 
+                if ((hit.transform.tag == "dummy" || (hit.transform.parent?.tag == "dummy")) 
                     && DummyGenerator.s_dummyWeapon == WeaponController.s_weapon)
                 {
                     // Dummy weapon compares with current player weapon and start drop the dummy

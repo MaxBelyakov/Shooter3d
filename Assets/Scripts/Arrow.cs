@@ -79,7 +79,7 @@ public class Arrow : ShootEffects
             }
 
             // Hit dummy target, check for "dummy" tag also parent object because bullet can hit the bullet hole
-            if ((collision.transform.tag == "dummy" || collision.transform.parent.tag == "dummy") 
+            if ((collision.transform.tag == "dummy" || collision.transform.parent?.tag == "dummy") 
                 && DummyGenerator.s_dummyWeapon == WeaponController.s_weapon)
             {
                 // Dummy weapon compares with current player weapon and start drop the dummy

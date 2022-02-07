@@ -7,7 +7,7 @@ public class ShotgunReload : MonoBehaviour
     void Update()
     {   
         // Waiting for reload button
-        if (Input.GetButtonDown("Reload") && !WeaponController.s_shooting)
+        if (Input.GetButtonDown("Reload") && !WeaponController.s_shooting && !WeaponController.s_reloading)
         {
             if (Shotgun.s_bulletsCurrent < Shotgun.s_bulletsAll && Inventory.s_shotgun_MagazineInventoryCurrent > 0)
             {
@@ -21,7 +21,7 @@ public class ShotgunReload : MonoBehaviour
     // Add 2 bullets. Calling from Animation
     void AddBullet()
     {   
-        if (Shotgun.s_bulletsCurrent < Shotgun.s_bulletsAll)
+        if (Shotgun.s_bulletsCurrent < Shotgun.s_bulletsAll && Inventory.s_shotgun_MagazineInventoryCurrent > 0)
         {
             // Add bullets to counter
             Shotgun.s_bulletsCurrent ++;
