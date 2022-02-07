@@ -144,3 +144,11 @@ v.2.6:
 - add target dummies;
 - target dummy random respawn;
 - target dummy for different kind of weapons.
+
+v.2.7 (release):
+- fix: no pistol dummy respawn;
+- fix: shotgun show -1 bullet;
+- fix: shoot in ammo debug null error;
+- fix: weapons extra reload bug;
+- fix: take ammo from basket, increase inventory inspector distance;
+- fix: interface correction after game build.
